@@ -28,7 +28,7 @@ const onSignInSuccess = function (response) {
   // $('#message').text(response.user.email + ' successfully signed in')
   $('#sign-in-form').trigger('reset')
   $('#sign-up-form').trigger('reset')
-  // store.user = response.user
+  store.user = response.user
 }
 
 const onSignInFailure = function (response) {
