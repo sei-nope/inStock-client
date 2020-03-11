@@ -11,10 +11,131 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
+
+    <!-- Sign Up Modal -->
     <body>
+      <div class="container sign-up-button">
+        <div class="row">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-up-modal">Click here to sign up!</button>
+            <div class="modal" id="sign-up-modal">
+              <div class="modal-dialogue">
+                <div class="modal-content">
+                  <div class="modal-header">Sign Up</div>
+                  <div class="modal-body">
+                    <form id="sign-up-form">
+                      <h3>Sign Up</h3>
+                        <fieldset>
+                          <input name="credentials[email]" type="string" id="sign-up-email" placeholder="example@example.com"   required>
+                          <br>
+                          <input name="credentials[password]" type="password"   id="sign-up-password" placeholder="Password" required>
+                          <br>
+                          <input name="credentials[password_confirmation]"  type="password" id="confirm-password"  placeholder="Confirm Password" required>
+                        </fieldset>
+                      <button id="sign-up" type="submit" class="btn-default">Sign Up</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sign In Modal -->
+      <div class="container sign-in-button">
+        <div class="row">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-modal">Click here to sign in!</button>
+            <div class="modal" id="sign-in-modal">
+              <div class="modal-dialogue">
+                <div class="modal-content">
+                  <div class="modal-header">Sign In</div>
+                  <div class="modal-body">
+                    <form id="sign-in-form">
+                      <h3>Sign In</h3>
+                        <fieldset>
+                          <input name="credentials[email]" type="string" id="sign-up-email" placeholder="example@example.com"   required>
+                          <br>
+                          <input name="credentials[password]" type="password"   id="sign-up-password" placeholder="Password" required>
+                          <br>
+                        </fieldset>
+                      <button id="sign-in" type="submit" class="btn-default">Sign In</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Change Password Modal -->
+      <div class="container change-password-button">
+        <div class="row">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#change-password-modal">Change Password!</button>
+            <div class="modal" id="change-password-modal">
+              <div class="modal-dialogue">
+                <div class="modal-content">
+                  <div class="modal-header">Change Password</div>
+                  <div class="modal-body">
+                    <form id="change-password-form">
+                      <h3>Sign In</h3>
+                        <fieldset>
+                          <input name="credentials[old-Password]" type="password" id="old-password" placeholder="Your Old Password"   required>
+                          <br>
+                          <input name="credentials[new-password]" type="password"   id="new-password" placeholder="Your New Password" required>
+                          <br>
+                        </fieldset>
+                      <button id="change-password" type="submit" class="btn-default">Change Password</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sign Out Modal -->
+      <div class="container sign-out-button">
+        <div class="row">
+          <div class="col-md-4">
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#sign-out-modal">Click here to sign out!</button>
+            <div class="modal" id="sign-out-modal">
+              <div class="modal-dialogue">
+                <div class="modal-content">
+                  <div class="modal-header">Sign Out</div>
+                  <div class="modal-body">
+                    <form id="sign-out-form">
+                      <h3>Sign Out</h3>
+                        <fieldset>
+
+                        </fieldset>
+                      <button id="sign-out" type="submit" class="btn-danger">Sign Out</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </body>
-    <footer>
-      
-    </footer>
+    <footer class="footer"> © Team Nope 2020 </footer>
 </html>
