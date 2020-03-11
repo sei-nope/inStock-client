@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('./store')
+const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
 
 // Sign Up
 const onSignUpSuccess = function (response) {
@@ -89,7 +90,10 @@ const onUpdateInventoryFailure = function (response) {
 }
 
 const onIndexInventoriesSuccess = function (response) {
-  console.log(response)
+  const inventories = response.inventories
+  console.log(inventories)
+  const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
+  $('.inventory-content').html(indexInventoriesHTML)
 }
 
 const onIndexInventoriesFailure = function (response) {
