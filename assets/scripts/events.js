@@ -49,9 +49,59 @@ const onSignOut = function (event) {
     .catch(ui.onSignOutFailure)
 }
 
+const onCreateInventory = (event) => {
+  event.preventDefault()
+  const form = event.target
+  const data = getFormFields(form)
+
+  api.createInventory(data)
+    .then(ui.onCreateInventorySuccess)
+    .catch(ui.onCreateInventoryFailure)
+}
+
+let updateId
+
+const onGetUpdateInventory = (event) => {
+  event.preventDefault()
+  updateId = undefined
+  const id = $(event.target).data('id')
+  updateId = id
+}
+
+const onUpdateInventory = (event) => {
+  event.preventDefault()
+  const form = event.target
+  const data = getFormFields(form)
+
+  api.updateWriting(updateId, data)
+    .then(ui.onUpdateInventorySuccess)
+    .catch(ui.onUpdateInventoryFailure)
+}
+
+const onIndexInventory = (event) => {
+  event.preventDefault()
+
+  api.indexInventories()
+    .then(ui.onIndexInventoriesSuccess)
+    .catch(ui.onIndexInventoriesFailure)
+}
+
+const onDeleteInventory = (event) => {
+  event.preventDefault()
+
+  api.deleteInventory(event)
+    .then(ui.onDeleteInventorySuccess)
+    .catch(ui.onDeleteInventoryFailure)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
-  onSignOut
+  onSignOut,
+  onDeleteInventory,
+  onUpdateInventory,
+  onGetUpdateInventory,
+  onIndexInventory,
+  onCreateInventory
 }
