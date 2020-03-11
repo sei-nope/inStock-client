@@ -72,6 +72,38 @@ const onSignOutFailure = function (response) {
   // $('#message').text('Sign Out Failed 😭')
 }
 
+const onCreateInventorySuccess = function (response) {
+  console.log(response)
+}
+
+const onCreateInventoryFailure = function (response) {
+  console.log(response)
+}
+
+const onUpdateInventorySuccess = function (response) {
+  console.log(response)
+}
+
+const onUpdateInventoryFailure = function (response) {
+  console.log(response)
+}
+
+const onIndexInventoriesSuccess = function (response) {
+  console.log(response)
+}
+
+const onIndexInventoriesFailure = function (response) {
+  console.log(response)
+}
+
+const onDeleteInventorySuccess = function (response) {
+  console.log(response)
+}
+
+const onDeleteInventoryFailure = function (response) {
+  console.log(response)
+}
+
 module.exports = {
   onSignUpSuccess,
   onSignUpFailure,
@@ -80,5 +112,13 @@ module.exports = {
   onChangePasswordSuccess,
   onChangePasswordFailure,
   onSignOutSuccess,
-  onSignOutFailure
+  onSignOutFailure,
+  onCreateInventorySuccess,
+  onCreateInventoryFailure,
+  onUpdateInventorySuccess,
+  onUpdateInventoryFailure,
+  onIndexInventoriesSuccess,
+  onIndexInventoriesFailure,
+  onDeleteInventorySuccess,
+  onDeleteInventoryFailure
 }
