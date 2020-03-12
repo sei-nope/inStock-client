@@ -30,7 +30,7 @@
                     <form id="sign-up-form">
                       <fieldset>
                         <label for="credentials[email]">Email</label>
-                        <input name="credentials[email]" type="text" id="sign-up-email" placeholder="example@example.com"   required>
+                        <input name="credentials[email]" type="email" id="sign-up-email" placeholder="example@example.com"   required>
                         <br>
                         <label for="credentials[password]">Password</label>
                         <input name="credentials[password]" type="password"   id="sign-up-password" placeholder="Password" required>
@@ -65,7 +65,7 @@
                     <form id="sign-in-form">
                       <fieldset>
                         <label for="credentials[email]">Email</label>
-                        <input name="credentials[email]" type="text" id="sign-in-email" placeholder="example@example.com"   required>
+                        <input name="credentials[email]" type="email" id="sign-in-email" placeholder="example@example.com"   required>
                         <br>
                         <label for="credentials[password]">Password</label>
                         <input name="credentials[password]" type="password"   id="sign-in-password" placeholder="Password" required>
@@ -143,7 +143,7 @@
                           <input type='number' name='inventory[quantity]' placeholder='quantity'>
                           <br>
                           <label for="inventory[price]">Price</label>
-                          <input type='number' name='inventory[price]' placeholder='price'>
+                          <input type='number' step='0.01' name='inventory[price]' placeholder='price'>
                         </fieldset>
                       <button id="update-inventory" type="submit" class="btn-info">Update!</button>
                     </form>

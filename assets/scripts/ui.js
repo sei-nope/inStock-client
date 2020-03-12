@@ -135,7 +135,6 @@ const onUpdateInventorySuccess = function (response) {
   $('#message').addClass('success-message')
   $('#message').text('Item Updated!')
   $('#modal-message-change-password').text('Item Successfully Updated')
-  
 }
 
 const onUpdateInventoryFailure = function (response) {
