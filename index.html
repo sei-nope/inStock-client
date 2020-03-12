@@ -14,6 +14,9 @@
 
     <!-- Sign Up Modal -->
     <body>
+
+      <p id="message" class="message"></p>
+
       <div class="container sign-up-button">
         <div class="row">
           <div class="col-md-4">
@@ -22,21 +25,24 @@
               <div class="modal-dialogue">
                 <div class="modal-content">
                   <div class="modal-header">Sign Up</div>
+                  <p id="modal-message-sign-up"></p>
                   <div class="modal-body">
                     <form id="sign-up-form">
-                      <h3>Sign Up</h3>
-                        <fieldset>
-                          <input name="credentials[email]" type="string" id="sign-up-email" placeholder="example@example.com"   required>
-                          <br>
-                          <input name="credentials[password]" type="password"   id="sign-up-password" placeholder="Password" required>
-                          <br>
-                          <input name="credentials[password_confirmation]"  type="password" id="confirm-password"  placeholder="Confirm Password" required>
-                        </fieldset>
+                      <fieldset>
+                        <label for="credentials[email]">Email</label>
+                        <input name="credentials[email]" type="email" id="sign-up-email" placeholder="example@example.com"   required>
+                        <br>
+                        <label for="credentials[password]">Password</label>
+                        <input name="credentials[password]" type="password"   id="sign-up-password" placeholder="Password" required>
+                        <br>
+                        <label for="credentials[password_confirmation]">Confirm Password</label>
+                        <input name="credentials[password_confirmation]"  type="password" id="confirm-password"  placeholder="Confirm Password" required>
+                      </fieldset>
                       <button id="sign-up" type="submit" class="btn-default">Sign Up</button>
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
@@ -54,20 +60,22 @@
               <div class="modal-dialogue">
                 <div class="modal-content">
                   <div class="modal-header">Sign In</div>
+                  <p id="modal-message-sign-in"></p>
                   <div class="modal-body">
                     <form id="sign-in-form">
-                      <h3>Sign In</h3>
-                        <fieldset>
-                          <input name="credentials[email]" type="string" id="sign-up-email" placeholder="example@example.com"   required>
-                          <br>
-                          <input name="credentials[password]" type="password"   id="sign-up-password" placeholder="Password" required>
-                          <br>
-                        </fieldset>
+                      <fieldset>
+                        <label for="credentials[email]">Email</label>
+                        <input name="credentials[email]" type="email" id="sign-in-email" placeholder="example@example.com"   required>
+                        <br>
+                        <label for="credentials[password]">Password</label>
+                        <input name="credentials[password]" type="password"   id="sign-in-password" placeholder="Password" required>
+                        <br>
+                      </fieldset>
                       <button id="sign-in" type="submit" class="btn-default">Sign In</button>
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
@@ -86,20 +94,21 @@
               <div class="modal-dialogue">
                 <div class="modal-content">
                   <div class="modal-header">Change Password</div>
+                  <p id="modal-message-change-password"></p>
                   <div class="modal-body">
                     <form id="change-password-form">
-                      <h3>Sign In</h3>
-                        <fieldset>
-                          <input name="credentials[old-Password]" type="password" id="old-password" placeholder="Your Old Password"   required>
-                          <br>
-                          <input name="credentials[new-password]" type="password"   id="new-password" placeholder="Your New Password" required>
-                          <br>
-                        </fieldset>
+                      <fieldset>
+                        <label for="passwords[old]">Old Password</label>
+                        <input name="passwords[old]" type="password" id="old-password" placeholder="Your Old Password"   required>
+                        <br>
+                        <label for="passwords[new]">New Password</label>
+                        <input name="passwords[new]" type="password"   id="new-password" placeholder="Your New Password" required>
+                      </fieldset>
                       <button id="change-password" type="submit" class="btn-default">Change Password</button>
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
@@ -108,26 +117,39 @@
         </div>
       </div>
 
-      <!-- Sign Out Modal -->
-      <div class="container sign-out-button">
+
+      <form id="sign-out-form">
+          <button id="sign-out" type="submit" class="btn-danger">Sign Out</button>
+      </form>
+
+      <button id="show-inventory" class='btn btn-info'>Show Your Inventory!</button>
+
+
+      <div class="container update-inventory-button">
         <div class="row">
           <div class="col-md-4">
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#sign-out-modal">Click here to sign out!</button>
-            <div class="modal" id="sign-out-modal">
+            <div class="modal" id="update-inventory-modal">
               <div class="modal-dialogue">
                 <div class="modal-content">
-                  <div class="modal-header">Sign Out</div>
+                  <div class="modal-header">Update Inventory</div>
+                  <p id="modal-message-update-inventory"></p>
                   <div class="modal-body">
-                    <form id="sign-out-form">
-                      <h3>Sign Out</h3>
+                    <form id="update-inventory-form">
                         <fieldset>
-
+                          <label for="inventory[name]">Name</label>
+                          <input type='text' name='inventory[name]' placeholder='name'>
+                          <br>
+                          <label for="inventory[quantity]">Qty</label>
+                          <input type='number' name='inventory[quantity]' placeholder='quantity'>
+                          <br>
+                          <label for="inventory[price]">Price</label>
+                          <input type='number' step='0.01' name='inventory[price]' placeholder='price'>
                         </fieldset>
-                      <button id="sign-out" type="submit" class="btn-danger">Sign Out</button>
+                      <button id="update-inventory" type="submit" class="btn-info">Update!</button>
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
@@ -136,6 +158,27 @@
         </div>
       </div>
 
+      <div class='create-inventory'>
+        <form id="create-inventory-form">
+          <h5>Create inventory</h5>
+            <fieldset>
+              <label for="inventory[name]">Name</label>
+              <input type='text' name='inventory[name]' required>
+              <br>
+              <label for="inventory[quantity]">Qty</label>
+              <input type='number' name='inventory[quantity]' required>
+              <br>
+              <label for="inventory[price]">Price</label>
+              <input type='number' step='0.01' name='inventory[price]' required>
+            </fieldset>
+          <button id="create-inventory" type="submit" class="btn btn-info">Submit</button>
+        </form>
+      </div>
+
+      <div class='container'>
+        <div id='inventory-content' class='inventory-content'>
+        </div>
+      </div>
+      <footer class="footer"> © Team Nope 2020 </footer>
     </body>
-    <footer class="footer"> © Team Nope 2020 </footer>
 </html>
