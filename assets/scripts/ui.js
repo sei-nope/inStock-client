@@ -139,7 +139,7 @@ const onUpdateInventorySuccess = function (response) {
 
 const onUpdateInventoryFailure = function (response) {
   failureMessage()
-  $('#modal-message-change-password').text('Item was not successfully updated')
+  $('#modal-message-update-inventory').text('Item was not successfully updated')
   $('#message').text('Update Attempt Failed')
 }
 
