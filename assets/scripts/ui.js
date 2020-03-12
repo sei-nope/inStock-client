@@ -124,6 +124,7 @@ const onCreateInventoryFailure = function (response) {
 const onUpdateInventorySuccess = function (response) {
   console.log(response)
   $('.close').trigger('click')
+  refresh()
 }
 
 const onUpdateInventoryFailure = function (response) {
