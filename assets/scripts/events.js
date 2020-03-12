@@ -73,7 +73,7 @@ const onUpdateInventory = (event) => {
   const form = event.target
   const data = getFormFields(form)
 
-  api.updateWriting(updateId, data)
+  api.updateInventory(updateId, data)
     .then(ui.onUpdateInventorySuccess)
     .catch(ui.onUpdateInventoryFailure)
 }
