@@ -16,8 +16,8 @@ const onSignUpSuccess = function (response) {
   // Clear Form Fields
   $('#sign-up-form').trigger('reset')
   $('#sign-in-form').trigger('reset')
+  $('.btn-danger').trigger('click')
   $('#change-password-form').trigger('reset')
-  $('.modal').hide()
 }
 
 const onSignUpFailure = function (response) {
@@ -50,7 +50,7 @@ const onSignInSuccess = function (response) {
   $('.sign-up-button').hide()
   $('.sign-in-button').hide()
   store.user = response.user
-  $('.modal').hide()
+  $('.btn-danger').trigger('click')
 }
 
 const onSignInFailure = function (response) {
@@ -72,7 +72,7 @@ const onChangePasswordSuccess = function (response) {
   $('#sign-up-form').trigger('reset')
   $('#sign-in-form').trigger('reset')
   $('#change-password-form').trigger('reset')
-  $('.modal').hide()
+  $('.btn-danger').trigger('click')
 }
 
 const onChangePasswordFailure = function (response) {
@@ -123,8 +123,8 @@ const onCreateInventoryFailure = function (response) {
 
 const onUpdateInventorySuccess = function (response) {
   console.log(response)
+  $('.btn-danger').trigger('click')
   refresh()
-  $('.modal').hide()
 }
 
 const onUpdateInventoryFailure = function (response) {
