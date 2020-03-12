@@ -7,39 +7,45 @@ const refresh = function () {
   $('.inventory-content').empty()
   $('#show-inventory').trigger('click')
 }
+const successMessage = function () {
+  $('#message').removeClass()
+  $('#message').addClass('success-message')
+}
+const failureMessage = function () {
+  $('#message').removeClass()
+  $('#message').addClass('failure-message')
+}
+const resetForms = function () {
+  $('#sign-up-form').trigger('reset')
+  $('#sign-in-form').trigger('reset')
+  $('#change-password-form').trigger('reset')
+  $('#create-inventory-form').trigger('reset')
+  $('#update-inventory-form').trigger('reset')
+}
 // Sign Up
 const onSignUpSuccess = function (response) {
   // console.log(response)
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
+  successMessage()
   $('#message').text(response.user.email + ' successfully signed up!')
   // Clear Form Fields
-  $('#sign-up-form').trigger('reset')
-  $('#sign-in-form').trigger('reset')
+  resetForms()
   $('.close').trigger('click')
-  $('#change-password-form').trigger('reset')
 }
 
 const onSignUpFailure = function (response) {
   // console.log(response)
-  $('#message').removeClass()
-  $('#message').addClass('failure-message')
+  failureMessage()
   $('#message').text('Failed to sign up')
   // Clear Form Fields
-  $('#sign-up-form').trigger('reset')
-  $('#sign-in-form').trigger('reset')
-  $('#change-password-form').trigger('reset')
+  resetForms()
 }
 
 // Sign In
 const onSignInSuccess = function (response) {
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
+  successMessage()
   $('#message').text(response.user.email + ' successfully signed in')
   // Clear Form Fields
-  $('#sign-in-form').trigger('reset')
-  $('#sign-up-form').trigger('reset')
-  $('#change-password-form').trigger('reset')
+  resetForms()
   // Show These Stuff
   $('.change-password-button').show()
   $('.sign-out-button').show()
@@ -54,41 +60,31 @@ const onSignInSuccess = function (response) {
 }
 
 const onSignInFailure = function (response) {
-  $('#message').removeClass()
-  $('#message').addClass('failure-message')
+  failureMessage()
   $('#message').text('Signed in failed. 😭')
   // Clear Form Fields
-  $('#sign-in-form').trigger('reset')
-  $('#sign-up-form').trigger('reset')
-  $('#change-password-form').trigger('reset')
+  resetForms()
 }
 
 // Change Password
 const onChangePasswordSuccess = function (response) {
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
+  successMessage()
   $('#message').text('Changed Password Succeeded!')
   // Clear Form Fields
-  $('#sign-up-form').trigger('reset')
-  $('#sign-in-form').trigger('reset')
-  $('#change-password-form').trigger('reset')
+  resetForms()
   $('.close').trigger('click')
 }
 
 const onChangePasswordFailure = function (response) {
-  $('#message').removeClass()
-  $('#message').addClass('failure-message')
+  failureMessage()
   $('#message').text('You can not change your password muahahaha!')
   // Clear Form Fields
-  $('#sign-up-form').trigger('reset')
-  $('#sign-in-form').trigger('reset')
-  $('#change-password-form').trigger('reset')
+  resetForms()
 }
 
 // Sign Out
 const onSignOutSuccess = function (response) {
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
+  successMessage()
   $('#message').text('Sign Out Succeeded!')
   // Hide these stuff
   $('.change-password-button').hide()
@@ -100,54 +96,62 @@ const onSignOutSuccess = function (response) {
   $('#sign-in-form').show()
   $('#sign-up-form').show()
   // Clear Form Fields
-  $('#sign-up-form').trigger('reset')
-  $('#sign-in-form').trigger('reset')
-  $('#change-password-form').trigger('reset')
+  resetForms()
 }
 
 const onSignOutFailure = function (response) {
-  $('#message').removeClass()
-  $('#message').addClass('failure-message')
+  failureMessage()
   $('#message').text('Sign Out Failed 😭')
-  $('#change-password-form').trigger('reset')
+  resetForms()
 }
 
 const onCreateInventorySuccess = function (response) {
   console.log(response)
+  successMessage()
+  resetForms()
   refresh()
 }
 
 const onCreateInventoryFailure = function (response) {
   console.log(response)
+  failureMessage()
 }
 
 const onUpdateInventorySuccess = function (response) {
   console.log(response)
+  successMessage()
+  resetForms()
   $('.close').trigger('click')
 }
 
 const onUpdateInventoryFailure = function (response) {
   console.log(response)
+  failureMessage()
 }
 
 const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
   console.log(inventories)
+  successMessage()
+  resetForms()
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
   $('.inventory-content').html(indexInventoriesHTML)
 }
 
 const onIndexInventoriesFailure = function (response) {
   console.log(response)
+  failureMessage()
 }
 
 const onDeleteInventorySuccess = function (response) {
   console.log(response)
+  successMessage()
   refresh()
 }
 
 const onDeleteInventoryFailure = function (response) {
   console.log(response)
+  failureMessage()
 }
 
 module.exports = {
@@ -166,5 +170,7 @@ module.exports = {
   onIndexInventoriesSuccess,
   onIndexInventoriesFailure,
   onDeleteInventorySuccess,
-  onDeleteInventoryFailure
+  onDeleteInventoryFailure,
+  successMessage,
+  failureMessage
 }
