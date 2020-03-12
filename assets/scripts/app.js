@@ -8,7 +8,7 @@ const authEvents = require('./events')
 
 $(() => {
   $('.change-password-button').hide()
-  $('.sign-out-button').hide()
+  $('#sign-out-form').hide()
   $('#show-inventory').hide()
   $('.update-inventory-button').hide()
   $('.create-inventory').hide()
