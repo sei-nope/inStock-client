@@ -133,8 +133,10 @@ const onUpdateInventoryFailure = function (response) {
 
 const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
-  console.log(inventories)
-  const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
+  const sortInventories = inventories.sort(function (a, b) {
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+  })
+  const indexInventoriesHTML = indexInventoriesTemplate({inventories: sortInventories})
   $('.inventory-content').html(indexInventoriesHTML)
 }
 
