@@ -100,6 +100,7 @@ const onSignOutSuccess = function (response) {
   $('.sign-up-button').show()
   // Clear Form Fields
   resetForms()
+  $('.inventory-content').empty()
 }
 
 const onSignOutFailure = function (response) {
@@ -146,8 +147,12 @@ const onIndexInventoriesSuccess = function (response) {
   console.log(inventories)
   successMessage()
   resetForms()
-  const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
-  $('.inventory-content').html(indexInventoriesHTML)
+  if (inventories.length < 1) {
+    $('.inventory-content').html('make somethin u bum')
+  } else {
+    const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
+    $('.inventory-content').html(indexInventoriesHTML)
+  }
   $('#message').removeClass()
   $('#message').addClass('success-message')
   $('#message').text('Here are all your items in your inventory.')
