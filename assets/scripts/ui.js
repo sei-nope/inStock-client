@@ -58,6 +58,7 @@ const onSignInSuccess = function (response) {
   $('.sign-in-button').hide()
   store.user = response.user
   $('.close').trigger('click')
+  refresh()
 }
 
 const onSignInFailure = function (response) {
@@ -126,8 +127,8 @@ const onUpdateInventorySuccess = function (response) {
   successMessage()
   resetForms()
   $('.close').trigger('click')
-  $('#message').text('Item Updated!')
   refresh()
+  $('#message').text('Item Updated!')
 }
 
 const onUpdateInventoryFailure = function (response) {
