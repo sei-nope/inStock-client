@@ -11,6 +11,7 @@ const onSignUpSuccess = function (response) {
   // $('#message').text(response.user.email + ' successfully signed up!')
   $('#sign-up-form').trigger('reset')
   $('#sign-in-form').trigger('reset')
+  $('.modal').hide()
 }
 
 const onSignUpFailure = function (response) {
@@ -30,6 +31,7 @@ const onSignInSuccess = function (response) {
   $('#sign-in-form').trigger('reset')
   $('#sign-up-form').trigger('reset')
   store.user = response.user
+  $('.modal').hide()
 }
 
 const onSignInFailure = function (response) {
@@ -46,6 +48,7 @@ const onChangePasswordSuccess = function (response) {
   // $('#message').addClass('success-message')
   // $('#message').text('Changed Password Succeeded!')
   $('#change-password-form').trigger('reset')
+  $('.modal').hide()
 }
 
 const onChangePasswordFailure = function (response) {
@@ -83,6 +86,7 @@ const onCreateInventoryFailure = function (response) {
 
 const onUpdateInventorySuccess = function (response) {
   console.log(response)
+  $('.modal').hide()
 }
 
 const onUpdateInventoryFailure = function (response) {
