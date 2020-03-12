@@ -3,6 +3,10 @@
 const store = require('./store')
 const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
 
+const refresh = function () {
+  $('.inventory-content').empty()
+  $('#show-inventory').trigger('click')
+}
 // Sign Up
 const onSignUpSuccess = function (response) {
   // console.log(response)
@@ -75,6 +79,7 @@ const onSignOutFailure = function (response) {
 
 const onCreateInventorySuccess = function (response) {
   console.log(response)
+  refresh()
 }
 
 const onCreateInventoryFailure = function (response) {
@@ -83,6 +88,7 @@ const onCreateInventoryFailure = function (response) {
 
 const onUpdateInventorySuccess = function (response) {
   console.log(response)
+  refresh()
 }
 
 const onUpdateInventoryFailure = function (response) {
@@ -102,6 +108,7 @@ const onIndexInventoriesFailure = function (response) {
 
 const onDeleteInventorySuccess = function (response) {
   console.log(response)
+  refresh()
 }
 
 const onDeleteInventoryFailure = function (response) {
