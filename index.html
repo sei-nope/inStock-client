@@ -163,13 +163,13 @@
           <h5>Create inventory</h5>
             <fieldset>
               <label for="inventory[name]">Name</label>
-              <input type='text' name='inventory[name]'>
+              <input type='text' name='inventory[name]' required>
               <br>
               <label for="inventory[quantity]">Qty</label>
-              <input type='number' name='inventory[quantity]'>
+              <input type='number' name='inventory[quantity]' required>
               <br>
               <label for="inventory[price]">Price</label>
-              <input type='number' name='inventory[price]'>
+              <input type='number' step='0.01' name='inventory[price]' required>
             </fieldset>
           <button id="create-inventory" type="submit" class="btn btn-info">Submit</button>
         </form>

@@ -2,11 +2,8 @@
 
 const store = require('./store')
 const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
+const showInventoryTemplate = require('./templates/inventory-show.handlebars')
 
-const refresh = function () {
-  $('.inventory-content').empty()
-  $('#show-inventory').trigger('click')
-}
 const successMessage = function () {
   $('#message').removeClass()
   $('#message').addClass('success-message')
@@ -24,7 +21,7 @@ const resetForms = function () {
 }
 // Sign Up
 const onSignUpSuccess = function (response) {
-  // console.log(response)
+  //
   successMessage()
   $('#message').text(response.user.email + ' successfully signed up!')
   // Clear Form Fields
@@ -33,7 +30,7 @@ const onSignUpSuccess = function (response) {
 }
 
 const onSignUpFailure = function (response) {
-  // console.log(response)
+  //
   $('#modal-message-sign-up').removeClass()
   $('#modal-message-sign-up').addClass('failure-message')
   $('#modal-message-sign-up').text('Failed to sign up')
@@ -98,8 +95,8 @@ const onSignOutSuccess = function (response) {
   // Show these stuff
   $('.sign-in-button').show()
   $('.sign-up-button').show()
-  // Clear Form Fields
   resetForms()
+  $('.inventory-content').empty()
 }
 
 const onSignOutFailure = function (response) {
@@ -109,23 +106,30 @@ const onSignOutFailure = function (response) {
 }
 
 const onCreateInventorySuccess = function (response) {
-  console.log(response)
+  const inventory = response.inventory
+  const showInventoryHTML = showInventoryTemplate({inventory: inventory})
+  $(`#${inventory._id}`).remove()
+  $('.inventory-content').prepend(showInventoryHTML)
   successMessage()
   resetForms()
-  refresh()
   $('#message').removeClass()
   $('#message').addClass('success-message')
   $('#message').text('Created!')
 }
 
 const onCreateInventoryFailure = function (response) {
-  console.log(response)
+
   failureMessage()
   $('#message').text('Create Attempt Failed! 😱')
 }
 
 const onUpdateInventorySuccess = function (response) {
-  console.log(response)
+
+  const inventory = response.inventory
+  const showInventoryHTML = showInventoryTemplate({inventory: inventory})
+  $(`#${inventory._id}`).remove()
+  $('.inventory-content').prepend(showInventoryHTML)
+  window.scrollTo(0, 0)
   successMessage()
   resetForms()
   $('.close').trigger('click')
@@ -137,41 +141,40 @@ const onUpdateInventorySuccess = function (response) {
 }
 
 const onUpdateInventoryFailure = function (response) {
-  console.log(response)
+
   failureMessage()
-  $('#message').text('Update Attempt Failed. Are you filling out all the required fields?')
   $('#modal-message-change-password').text('Item was not successfully updated')
+  $('#message').text('Update Attempt Failed')
 }
 
 const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
-  console.log(inventories)
+
   successMessage()
   resetForms()
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
   $('.inventory-content').html(indexInventoriesHTML)
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
   $('#message').text('Here are all your items in your inventory.')
 }
 
 const onIndexInventoriesFailure = function (response) {
-  console.log(response)
+
   failureMessage()
   $('#message').text('You broke the database!')
 }
 
-const onDeleteInventorySuccess = function (response) {
-  console.log(response)
+const onDeleteInventorySuccess = function (response, id) {
+
   successMessage()
-  refresh()
+
+  $(`#${id}`).remove()
   $('#message').removeClass()
   $('#message').addClass('success-message')
   $('#message').text('Item Deleted!')
 }
 
 const onDeleteInventoryFailure = function (response) {
-  console.log(response)
+
   failureMessage()
   $('#message').text('You can not delete the item muahahaha!')
 }

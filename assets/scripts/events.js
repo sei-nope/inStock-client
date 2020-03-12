@@ -6,10 +6,10 @@ const ui = require('./ui')
 // Sign Up function
 const onSignUp = function (event) {
   event.preventDefault()
-  console.log(event)
+
   const form = event.target
   const data = getFormFields(form)
-  console.log(data)
+
 
   api.signUp(data)
     .then(ui.onSignUpSuccess)
@@ -22,7 +22,7 @@ const onSignIn = function (event) {
 
   const form = event.target
   const data = getFormFields(form)
-  // console.log(data)
+  //
 
   api.signIn(data)
     .then(ui.onSignInSuccess)
@@ -72,7 +72,7 @@ const onUpdateInventory = (event) => {
   event.preventDefault()
   const form = event.target
   const data = getFormFields(form)
-
+  data.inventory.name = data.inventory.name.toLowerCase()
   api.updateInventory(updateId, data)
     .then(ui.onUpdateInventorySuccess)
     .catch(ui.onUpdateInventoryFailure)
@@ -91,7 +91,9 @@ const onDeleteInventory = (event) => {
   const id = $(event.target).data('id')
 
   api.deleteInventory(id)
-    .then(ui.onDeleteInventorySuccess)
+    .then((response) => {
+      ui.onDeleteInventorySuccess(response, id)
+    })
     .catch(ui.onDeleteInventoryFailure)
 }
 
