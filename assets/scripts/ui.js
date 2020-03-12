@@ -118,13 +118,11 @@ const onCreateInventorySuccess = function (response) {
 }
 
 const onCreateInventoryFailure = function (response) {
-
   failureMessage()
   $('#message').text('Create Attempt Failed! 😱')
 }
 
 const onUpdateInventorySuccess = function (response) {
-
   const inventory = response.inventory
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
@@ -141,7 +139,6 @@ const onUpdateInventorySuccess = function (response) {
 }
 
 const onUpdateInventoryFailure = function (response) {
-
   failureMessage()
   $('#modal-message-change-password').text('Item was not successfully updated')
   $('#message').text('Update Attempt Failed')
@@ -158,13 +155,11 @@ const onIndexInventoriesSuccess = function (response) {
 }
 
 const onIndexInventoriesFailure = function (response) {
-
   failureMessage()
   $('#message').text('You broke the database!')
 }
 
 const onDeleteInventorySuccess = function (response, id) {
-
   successMessage()
 
   $(`#${id}`).remove()
@@ -174,7 +169,6 @@ const onDeleteInventorySuccess = function (response, id) {
 }
 
 const onDeleteInventoryFailure = function (response) {
-
   failureMessage()
   $('#message').text('You can not delete the item muahahaha!')
 }
