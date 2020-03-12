@@ -136,6 +136,7 @@ const onUpdateInventorySuccess = function (response) {
   $('#message').removeClass()
   $('#message').addClass('success-message')
   $('#message').text('Item Updated!')
+  refresh()
 }
 
 const onUpdateInventoryFailure = function (response) {
