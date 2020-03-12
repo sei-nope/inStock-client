@@ -136,11 +136,14 @@ const onUpdateInventorySuccess = function (response) {
   $('#message').removeClass()
   $('#message').addClass('success-message')
   $('#message').text('Item Updated!')
+  $('#modal-message-change-password').text('Item Successfully Updated')
+  refresh()
 }
 
 const onUpdateInventoryFailure = function (response) {
 
   failureMessage()
+  $('#modal-message-change-password').text('Item was not successfully updated')
   $('#message').text('Update Attempt Failed')
 }
 
