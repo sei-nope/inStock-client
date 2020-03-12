@@ -91,7 +91,9 @@ const onDeleteInventory = (event) => {
   const id = $(event.target).data('id')
 
   api.deleteInventory(id)
-    .then(ui.onDeleteInventorySuccess)
+    .then((response) => {
+      ui.onDeleteInventorySuccess(response, id)
+    })
     .catch(ui.onDeleteInventoryFailure)
 }
 

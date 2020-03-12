@@ -2,11 +2,8 @@
 
 const store = require('./store')
 const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
+const showInventoryTemplate = require('./templates/inventory-show.handlebars')
 
-const refresh = function () {
-  $('.inventory-content').empty()
-  $('#show-inventory').trigger('click')
-}
 const successMessage = function () {
   $('#message').removeClass()
   $('#message').addClass('success-message')
@@ -58,7 +55,6 @@ const onSignInSuccess = function (response) {
   $('.sign-in-button').hide()
   store.user = response.user
   $('.close').trigger('click')
-  refresh()
 }
 
 const onSignInFailure = function (response) {
@@ -109,10 +105,14 @@ const onSignOutFailure = function (response) {
 }
 
 const onCreateInventorySuccess = function (response) {
-  console.log(response)
+  const inventory = response.inventory
+  const showInventoryHTML = showInventoryTemplate({inventory: inventory})
+  $(`#${inventory._id}`).remove()
+  $('.inventory-content').prepend(showInventoryHTML)
   successMessage()
   resetForms()
-  refresh()
+  $('#message').removeClass()
+  $('#message').addClass('success-message')
   $('#message').text('Created!')
 }
 
@@ -124,10 +124,16 @@ const onCreateInventoryFailure = function (response) {
 
 const onUpdateInventorySuccess = function (response) {
   console.log(response)
+  const inventory = response.inventory
+  const showInventoryHTML = showInventoryTemplate({inventory: inventory})
+  $(`#${inventory._id}`).remove()
+  $('.inventory-content').prepend(showInventoryHTML)
+  window.scrollTo(0, 0)
   successMessage()
   resetForms()
   $('.close').trigger('click')
-  refresh()
+  $('#message').removeClass()
+  $('#message').addClass('success-message')
   $('#message').text('Item Updated!')
 }
 
@@ -153,10 +159,13 @@ const onIndexInventoriesFailure = function (response) {
   $('#message').text('You broke the database!')
 }
 
-const onDeleteInventorySuccess = function (response) {
+const onDeleteInventorySuccess = function (response, id) {
   console.log(response)
   successMessage()
-  refresh()
+
+  $(`#${id}`).remove()
+  $('#message').removeClass()
+  $('#message').addClass('success-message')
   $('#message').text('Item Deleted!')
 }
 

@@ -1,0 +1,18 @@
+<section id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
+  <h3>
+    {{inventory.name}}
+  </h3>
+    <p>
+      In Stock: {{inventory.quantity}}
+    </p>
+    <p>
+      Price: ${{inventory.price}}
+    </p>
+    <p>
+      {{> update-inventory id=inventory._id}}
+    </p>
+    <p>
+      {{> delete-inventory id=inventory._id}}
+    </p>
+
+</section>
