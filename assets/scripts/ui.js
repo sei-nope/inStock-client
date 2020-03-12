@@ -132,6 +132,7 @@ const onUpdateInventorySuccess = function (response) {
   $('#message').removeClass()
   $('#message').addClass('success-message')
   $('#message').text('Item Updated!')
+  $('#modal-message-change-password').text('Item Successfully Updated')
   refresh()
 }
 
@@ -139,6 +140,7 @@ const onUpdateInventoryFailure = function (response) {
   console.log(response)
   failureMessage()
   $('#message').text('Update Attempt Failed. Are you filling out all the required fields?')
+  $('#modal-message-change-password').text('Item was not successfully updated')
 }
 
 const onIndexInventoriesSuccess = function (response) {
