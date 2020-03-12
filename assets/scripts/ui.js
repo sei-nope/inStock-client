@@ -98,7 +98,6 @@ const onSignOutSuccess = function (response) {
   // Show these stuff
   $('.sign-in-button').show()
   $('.sign-up-button').show()
-  // Clear Form Fields
   resetForms()
 }
 
@@ -113,8 +112,6 @@ const onCreateInventorySuccess = function (response) {
   successMessage()
   resetForms()
   refresh()
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
   $('#message').text('Created!')
 }
 
@@ -129,8 +126,6 @@ const onUpdateInventorySuccess = function (response) {
   successMessage()
   resetForms()
   $('.close').trigger('click')
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
   $('#message').text('Item Updated!')
   refresh()
 }
@@ -138,7 +133,7 @@ const onUpdateInventorySuccess = function (response) {
 const onUpdateInventoryFailure = function (response) {
   console.log(response)
   failureMessage()
-  $('#message').text('Update Attempt Failed. Are you filling out all the required fields?')
+  $('#message').text('Update Attempt Failed')
 }
 
 const onIndexInventoriesSuccess = function (response) {
@@ -148,8 +143,6 @@ const onIndexInventoriesSuccess = function (response) {
   resetForms()
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
   $('.inventory-content').html(indexInventoriesHTML)
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
   $('#message').text('Here are all your items in your inventory.')
 }
 
@@ -163,8 +156,6 @@ const onDeleteInventorySuccess = function (response) {
   console.log(response)
   successMessage()
   refresh()
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
   $('#message').text('Item Deleted!')
 }
 
