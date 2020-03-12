@@ -21,7 +21,7 @@ const resetForms = function () {
 }
 // Sign Up
 const onSignUpSuccess = function (response) {
-  // console.log(response)
+  //
   successMessage()
   $('#message').text(response.user.email + ' successfully signed up!')
   // Clear Form Fields
@@ -30,7 +30,7 @@ const onSignUpSuccess = function (response) {
 }
 
 const onSignUpFailure = function (response) {
-  // console.log(response)
+  //
   $('#modal-message-sign-up').removeClass()
   $('#modal-message-sign-up').addClass('failure-message')
   $('#modal-message-sign-up').text('Failed to sign up')
@@ -96,6 +96,7 @@ const onSignOutSuccess = function (response) {
   $('.sign-in-button').show()
   $('.sign-up-button').show()
   resetForms()
+  $('.inventory-content').empty()
 }
 
 const onSignOutFailure = function (response) {
@@ -117,13 +118,13 @@ const onCreateInventorySuccess = function (response) {
 }
 
 const onCreateInventoryFailure = function (response) {
-  console.log(response)
+
   failureMessage()
   $('#message').text('Create Attempt Failed! 😱')
 }
 
 const onUpdateInventorySuccess = function (response) {
-  console.log(response)
+
   const inventory = response.inventory
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
@@ -138,14 +139,14 @@ const onUpdateInventorySuccess = function (response) {
 }
 
 const onUpdateInventoryFailure = function (response) {
-  console.log(response)
+
   failureMessage()
   $('#message').text('Update Attempt Failed')
 }
 
 const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
-  console.log(inventories)
+
   successMessage()
   resetForms()
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
@@ -154,13 +155,13 @@ const onIndexInventoriesSuccess = function (response) {
 }
 
 const onIndexInventoriesFailure = function (response) {
-  console.log(response)
+
   failureMessage()
   $('#message').text('You broke the database!')
 }
 
 const onDeleteInventorySuccess = function (response, id) {
-  console.log(response)
+
   successMessage()
 
   $(`#${id}`).remove()
@@ -170,7 +171,7 @@ const onDeleteInventorySuccess = function (response, id) {
 }
 
 const onDeleteInventoryFailure = function (response) {
-  console.log(response)
+
   failureMessage()
   $('#message').text('You can not delete the item muahahaha!')
 }
