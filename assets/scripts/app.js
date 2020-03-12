@@ -7,6 +7,11 @@ const authEvents = require('./events')
 // require('./example')
 
 $(() => {
+  $('.change-password-button').hide()
+  $('.sign-out-button').hide()
+  $('#show-inventory').hide()
+  $('.update-inventory-button').hide()
+  $('.create-inventory').hide()
   $('#sign-up-form').on('submit', authEvents.onSignUp)
   $('#sign-in-form').on('submit', authEvents.onSignIn)
   $('#change-password-form').on('submit', authEvents.onChangePassword)
