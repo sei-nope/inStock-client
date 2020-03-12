@@ -3,6 +3,10 @@
 const store = require('./store')
 const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
 
+const refresh = function () {
+  $('.inventory-content').empty()
+  $('#show-inventory').trigger('click')
+}
 // Sign Up
 const onSignUpSuccess = function (response) {
   // console.log(response)
@@ -13,6 +17,7 @@ const onSignUpSuccess = function (response) {
   $('#sign-up-form').trigger('reset')
   $('#sign-in-form').trigger('reset')
   $('#change-password-form').trigger('reset')
+  $('.modal').hide()
 }
 
 const onSignUpFailure = function (response) {
@@ -45,6 +50,7 @@ const onSignInSuccess = function (response) {
   $('.sign-up-button').hide()
   $('.sign-in-button').hide()
   store.user = response.user
+  $('.modal').hide()
 }
 
 const onSignInFailure = function (response) {
@@ -66,6 +72,7 @@ const onChangePasswordSuccess = function (response) {
   $('#sign-up-form').trigger('reset')
   $('#sign-in-form').trigger('reset')
   $('#change-password-form').trigger('reset')
+  $('.modal').hide()
 }
 
 const onChangePasswordFailure = function (response) {
@@ -107,6 +114,7 @@ const onSignOutFailure = function (response) {
 
 const onCreateInventorySuccess = function (response) {
   console.log(response)
+  refresh()
 }
 
 const onCreateInventoryFailure = function (response) {
@@ -115,6 +123,8 @@ const onCreateInventoryFailure = function (response) {
 
 const onUpdateInventorySuccess = function (response) {
   console.log(response)
+  refresh()
+  $('.modal').hide()
 }
 
 const onUpdateInventoryFailure = function (response) {
@@ -134,6 +144,7 @@ const onIndexInventoriesFailure = function (response) {
 
 const onDeleteInventorySuccess = function (response) {
   console.log(response)
+  refresh()
 }
 
 const onDeleteInventoryFailure = function (response) {

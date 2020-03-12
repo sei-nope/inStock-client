@@ -53,7 +53,7 @@ const onCreateInventory = (event) => {
   event.preventDefault()
   const form = event.target
   const data = getFormFields(form)
-
+  data.inventory.name = data.inventory.name.toLowerCase()
   api.createInventory(data)
     .then(ui.onCreateInventorySuccess)
     .catch(ui.onCreateInventoryFailure)
