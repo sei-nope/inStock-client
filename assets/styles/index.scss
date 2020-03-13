@@ -1,5 +1,18 @@
 @import '~bootstrap/scss/bootstrap';
 
+$trashcan: #c21807;
+$edit: #29ab87;
+
 body {
   font-family: 'Arvo', serif;
+}
+
+.fa-trash-alt {
+  color: $trashcan;
+  cursor: pointer;
+}
+
+.fa-edit {
+  color: $edit;
+  cursor: pointer;
 }
