@@ -4,6 +4,7 @@ const store = require('./store')
 const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
 const showInventoryTemplate = require('./templates/inventory-show.handlebars')
 const QRCode = require('qrcode')
+const config = require('./config.js')
 
 const successMessage = function () {
   $('#message').removeClass()
@@ -100,20 +101,7 @@ const onSignOutFailure = function (response) {
 
 const onCreateInventorySuccess = function (response) {
   const inventory = response.inventory
-
-  const time = new Date(`${inventory.updatedAt}`)
-
-  const newThang = {
-    inventory: {
-      name: `${inventory.name}`,
-      quantity: `${inventory.quantity}`,
-      price: `${inventory.price}`,
-      updatedAt: `${time}`
-    }
-  }
-
-  const newThing = JSON.stringify(newThang)
-  QRCode.toDataURL(`${newThing}`, function (error, url) {
+  QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
     if (error) console.error(error)
     inventory.qr = url
   })
@@ -135,20 +123,7 @@ const onCreateInventoryFailure = function (response) {
 
 const onUpdateInventorySuccess = function (response) {
   const inventory = response.inventory
-
-  const time = new Date(`${inventory.updatedAt}`)
-
-  const newThang = {
-    inventory: {
-      name: `${inventory.name}`,
-      quantity: `${inventory.quantity}`,
-      price: `${inventory.price}`,
-      updatedAt: `${time}`
-    }
-  }
-
-  const newThing = JSON.stringify(newThang)
-  QRCode.toDataURL(`${newThing}`, function (error, url) {
+  QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
     if (error) console.error(error)
     inventory.qr = url
   })
@@ -176,18 +151,7 @@ const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
 
   inventories.forEach(function (inventory) {
-    const time = new Date(`${inventory.updatedAt}`)
-
-    const newThang = {
-      inventory: {
-        name: `${inventory.name}`,
-        quantity: `${inventory.quantity}`,
-        price: `${inventory.price}`,
-        updatedAt: `${time}`
-      }
-    }
-    const newThing = JSON.stringify(newThang)
-    QRCode.toDataURL(`${newThing}`, function (error, url) {
+    QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
       if (error) console.error(error)
       inventory.qr = url
     })
