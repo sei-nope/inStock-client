@@ -3,6 +3,7 @@
 const store = require('./store')
 const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
 const showInventoryTemplate = require('./templates/inventory-show.handlebars')
+const QRCode = require('qrcode')
 
 const successMessage = function () {
   $('#message').removeClass()
@@ -146,11 +147,27 @@ const onUpdateInventoryFailure = function (response) {
 const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
 
+  inventories.forEach(function (inventory) {
+    const newThing = JSON.stringify(inventory)
+    QRCode.toDataURL(`${newThing}`, function (error, url) {
+      if (error) console.error(error)
+      inventory.qr = url
+    })
+  })
+
+  if (inventories[0].qr === inventories[1].qr) {
+    console.log(1)
+  } else {
+    console.log(2)
+  }
   successMessage()
   resetForms()
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
   $('.inventory-content').html(indexInventoriesHTML)
   $('#message').text('Here are all your items in your inventory.')
+  console.log(response.inventories)
+
+  console.log(inventories)
 }
 
 const onIndexInventoriesFailure = function (response) {
