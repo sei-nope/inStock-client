@@ -21,19 +21,18 @@ const resetForms = function () {
 }
 // Sign Up
 const onSignUpSuccess = function (response) {
-  //
   successMessage()
   $('#message').text(response.user.email + ' successfully signed up!')
   // Clear Form Fields
   resetForms()
-  $('.close').trigger('click')
+  // $('.close').trigger('click')
 }
 
 const onSignUpFailure = function (response) {
   //
-  $('#modal-message-sign-up').removeClass()
-  $('#modal-message-sign-up').addClass('failure-message')
-  $('#modal-message-sign-up').text('Failed to sign up')
+  $('#message').removeClass()
+  $('#message').addClass('failure-message')
+  $('#message').text('Failed to sign up')
   // Clear Form Fields
   resetForms()
 }
@@ -50,13 +49,13 @@ const onSignInSuccess = function (response) {
   // Hide These Stuff
   $('.card').hide()
   store.user = response.user
-  $('.close').trigger('click')
+  // $('.close').trigger('click')
 }
 
 const onSignInFailure = function (response) {
-  $('#modal-message-sign-in').removeClass()
-  $('#modal-message-sign-in').addClass('failure-message')
-  $('#modal-message-sign-in').text('Signed in failed. 😭')
+  $('#message').removeClass()
+  $('#message').addClass('failure-message')
+  $('#message').text('Signed in failed. 😭')
   // Clear Form Fields
   resetForms()
 }
@@ -101,7 +100,7 @@ const onCreateInventorySuccess = function (response) {
   const inventory = response.inventory
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
-  $('.inventory-content').prepend(showInventoryHTML)
+  $('#item').prepend(showInventoryHTML)
   successMessage()
   resetForms()
   $('#message').removeClass()
@@ -118,7 +117,7 @@ const onUpdateInventorySuccess = function (response) {
   const inventory = response.inventory
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
-  $('.inventory-content').prepend(showInventoryHTML)
+  $('#item').prepend(showInventoryHTML)
   window.scrollTo(0, 0)
   successMessage()
   resetForms()
@@ -126,7 +125,7 @@ const onUpdateInventorySuccess = function (response) {
   $('#message').removeClass()
   $('#message').addClass('success-message')
   $('#message').text('Item Updated!')
-  $('#modal-message-change-password').text('Item Successfully Updated')
+  $('#modal-message-update-inventory').text('Item Successfully Updated')
 }
 
 const onUpdateInventoryFailure = function (response) {
