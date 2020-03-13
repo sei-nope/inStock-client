@@ -3,6 +3,7 @@
 const store = require('./store')
 const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
 const showInventoryTemplate = require('./templates/inventory-show.handlebars')
+const QRCode = require('qrcode')
 
 const successMessage = function () {
   $('#message').removeClass()
@@ -99,6 +100,13 @@ const onSignOutFailure = function (response) {
 
 const onCreateInventorySuccess = function (response) {
   const inventory = response.inventory
+
+  const newThing = JSON.stringify(inventory)
+  QRCode.toDataURL(`${newThing}`, function (error, url) {
+    if (error) console.error(error)
+    inventory.qr = url
+  })
+
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
   $('.inventory-content').prepend(showInventoryHTML)
@@ -116,6 +124,13 @@ const onCreateInventoryFailure = function (response) {
 
 const onUpdateInventorySuccess = function (response) {
   const inventory = response.inventory
+
+  const newThing = JSON.stringify(inventory)
+  QRCode.toDataURL(`${newThing}`, function (error, url) {
+    if (error) console.error(error)
+    inventory.qr = url
+  })
+
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
   $('.inventory-content').prepend(showInventoryHTML)
@@ -138,11 +153,22 @@ const onUpdateInventoryFailure = function (response) {
 const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
 
+  inventories.forEach(function (inventory) {
+    const newThing = JSON.stringify(inventory)
+    QRCode.toDataURL(`${newThing}`, function (error, url) {
+      if (error) console.error(error)
+      inventory.qr = url
+    })
+  })
+
   successMessage()
   resetForms()
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
   $('.inventory-content').html(indexInventoriesHTML)
   $('#message').text('Here are all your items in your inventory.')
+  console.log(response.inventories)
+
+  console.log(inventories)
 }
 
 const onIndexInventoriesFailure = function (response) {

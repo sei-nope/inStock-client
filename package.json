@@ -9,8 +9,11 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.1.2",
+    "canvas": "^2.6.1",
     "jquery": "^3.3.1",
-    "popper.js": "^1.14.3"
+    "jsbarcode": "^3.11.0",
+    "popper.js": "^1.14.3",
+    "qrcode": "^1.4.4"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
