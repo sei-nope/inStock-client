@@ -7,6 +7,9 @@ const authEvents = require('./events')
 // require('./example')
 
 $(() => {
+  $('.img__btn').on('click', function () {
+    $('.cont').toggleClass('s--signup')
+  })
   const date = new Date()
   const year = date.getFullYear()
   $('.year').text(year)
