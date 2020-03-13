@@ -1,24 +1,7 @@
-<section id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
-  <h3>
-    {{inventory.name}}
-  </h3>
-    <p>
-      In Stock: {{inventory.quantity}}
-    </p>
-    <p>
-      Price: ${{inventory.price}}
-    </p>
-    <p>
-      {{> update-inventory id=inventory._id}}
-    </p>
-    <p>
-      {{> delete-inventory id=inventory._id}}
-    </p>
-    <p>
-      <p>
-        <img src="{{inventory.qr}}"
-      </p>
-
-    </p>
-
-</section>
+<tr id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
+  <td scope="row">{{inventory.name}}</td>
+  <td>{{inventory.quantity}}</td>
+  <td>${{inventory.price}}</td>
+  <td>{{> update-inventory id=inventory._id}}</td>
+  <td>{{> delete-inventory id=inventory._id}}</td>
+</tr>

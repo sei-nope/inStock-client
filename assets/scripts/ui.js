@@ -23,17 +23,17 @@ const resetForms = function () {
 }
 // Sign Up
 const onSignUpSuccess = function (response) {
-  //
   successMessage()
   $('#message').text(response.user.email + ' successfully signed up!')
   // Clear Form Fields
   resetForms()
-  $('.close').trigger('click')
+  // $('.close').trigger('click')
 }
 
 const onSignUpFailure = function (response) {
   //
-  $('.sign-up-fail').text('Failed to sign up')
+  failureMessage()
+  $('#message').text('Failed to sign up')
   // Clear Form Fields
   resetForms()
 }
@@ -50,12 +50,13 @@ const onSignInSuccess = function (response) {
   // Hide These Stuff
   $('.cont').hide()
   store.user = response.user
-  $('.close').trigger('click')
+  // $('.close').trigger('click')
 }
 
 const onSignInFailure = function (response) {
-  console.log(response)
-  $('.sign-in-fail').html('Signed in failed. 😭')
+  failureMessage()
+  $('#message').text('Signed in failed. 😭')
+  // Clear Form Fields
   resetForms()
 }
 
@@ -104,7 +105,7 @@ const onCreateInventorySuccess = function (response) {
 
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
-  $('.inventory-content').prepend(showInventoryHTML)
+  $('#item').prepend(showInventoryHTML)
   successMessage()
   resetForms()
   $('#message').removeClass()
@@ -126,7 +127,7 @@ const onUpdateInventorySuccess = function (response) {
 
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
-  $('.inventory-content').prepend(showInventoryHTML)
+  $('#item').prepend(showInventoryHTML)
   window.scrollTo(0, 0)
   successMessage()
   resetForms()
@@ -134,7 +135,7 @@ const onUpdateInventorySuccess = function (response) {
   $('#message').removeClass()
   $('#message').addClass('success-message')
   $('#message').text('Item Updated!')
-  $('#modal-message-change-password').text('Item Successfully Updated')
+  $('#modal-message-update-inventory').text('Item Successfully Updated')
 }
 
 const onUpdateInventoryFailure = function (response) {
