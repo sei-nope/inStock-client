@@ -31,9 +31,7 @@ const onSignUpSuccess = function (response) {
 
 const onSignUpFailure = function (response) {
   //
-  $('#modal-message-sign-up').removeClass()
-  $('#modal-message-sign-up').addClass('failure-message')
-  $('#modal-message-sign-up').text('Failed to sign up')
+  $('.sign-up-fail').text('Failed to sign up')
   // Clear Form Fields
   resetForms()
 }
@@ -48,16 +46,14 @@ const onSignInSuccess = function (response) {
   $('.create-inventory').show()
   $('nav').show()
   // Hide These Stuff
-  $('.card').hide()
+  $('.cont').hide()
   store.user = response.user
   $('.close').trigger('click')
 }
 
 const onSignInFailure = function (response) {
-  $('#modal-message-sign-in').removeClass()
-  $('#modal-message-sign-in').addClass('failure-message')
-  $('#modal-message-sign-in').text('Signed in failed. 😭')
-  // Clear Form Fields
+  console.log(response)
+  $('.sign-in-fail').html('Signed in failed. 😭')
   resetForms()
 }
 
@@ -86,7 +82,7 @@ const onSignOutSuccess = function (response) {
   $('.create-inventory').hide()
   $('nav').hide()
   // Show these stuff
-  $('.card').show()
+  $('.cont').show()
   resetForms()
   $('.inventory-content').empty()
 }
