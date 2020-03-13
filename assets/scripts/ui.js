@@ -108,6 +108,13 @@ const onSignOutFailure = function (response) {
 
 const onCreateInventorySuccess = function (response) {
   const inventory = response.inventory
+
+  const newThing = JSON.stringify(inventory)
+  QRCode.toDataURL(`${newThing}`, function (error, url) {
+    if (error) console.error(error)
+    inventory.qr = url
+  })
+
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
   $('.inventory-content').prepend(showInventoryHTML)
@@ -125,6 +132,13 @@ const onCreateInventoryFailure = function (response) {
 
 const onUpdateInventorySuccess = function (response) {
   const inventory = response.inventory
+
+  const newThing = JSON.stringify(inventory)
+  QRCode.toDataURL(`${newThing}`, function (error, url) {
+    if (error) console.error(error)
+    inventory.qr = url
+  })
+
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
   $('.inventory-content').prepend(showInventoryHTML)
@@ -155,11 +169,6 @@ const onIndexInventoriesSuccess = function (response) {
     })
   })
 
-  if (inventories[0].qr === inventories[1].qr) {
-    console.log(1)
-  } else {
-    console.log(2)
-  }
   successMessage()
   resetForms()
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
