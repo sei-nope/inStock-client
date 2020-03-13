@@ -45,14 +45,10 @@ const onSignInSuccess = function (response) {
   // Clear Form Fields
   resetForms()
   // Show These Stuff
-  $('.change-password-button').show()
-  $('#sign-out-form').show()
-  $('#show-inventory').show()
-  $('.update-inventory-button').show()
   $('.create-inventory').show()
+  $('nav').show()
   // Hide These Stuff
-  $('.sign-up-button').hide()
-  $('.sign-in-button').hide()
+  $('.card').hide()
   store.user = response.user
   $('.close').trigger('click')
 }
@@ -87,14 +83,10 @@ const onSignOutSuccess = function (response) {
   successMessage()
   $('#message').text('Sign Out Succeeded!')
   // Hide these stuff
-  $('.change-password-button').hide()
-  $('#sign-out-form').hide()
-  $('#show-inventory').hide()
-  $('.update-inventory-button').hide()
   $('.create-inventory').hide()
+  $('nav').hide()
   // Show these stuff
-  $('.sign-in-button').show()
-  $('.sign-up-button').show()
+  $('.card').show()
   resetForms()
   $('.inventory-content').empty()
 }
