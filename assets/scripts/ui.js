@@ -3,6 +3,8 @@
 const store = require('./store')
 const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
 const showInventoryTemplate = require('./templates/inventory-show.handlebars')
+const QRCode = require('qrcode')
+const config = require('./config.js')
 
 const successMessage = function () {
   $('#message').removeClass()
@@ -30,8 +32,7 @@ const onSignUpSuccess = function (response) {
 
 const onSignUpFailure = function (response) {
   //
-  $('#message').removeClass()
-  $('#message').addClass('failure-message')
+  failureMessage()
   $('#message').text('Failed to sign up')
   // Clear Form Fields
   resetForms()
@@ -47,14 +48,13 @@ const onSignInSuccess = function (response) {
   $('.create-inventory').show()
   $('nav').show()
   // Hide These Stuff
-  $('.card').hide()
+  $('.cont').hide()
   store.user = response.user
   // $('.close').trigger('click')
 }
 
 const onSignInFailure = function (response) {
-  $('#message').removeClass()
-  $('#message').addClass('failure-message')
+  failureMessage()
   $('#message').text('Signed in failed. 😭')
   // Clear Form Fields
   resetForms()
@@ -85,7 +85,7 @@ const onSignOutSuccess = function (response) {
   $('.create-inventory').hide()
   $('nav').hide()
   // Show these stuff
-  $('.card').show()
+  $('.cont').show()
   resetForms()
   $('.inventory-content').empty()
 }
@@ -98,6 +98,11 @@ const onSignOutFailure = function (response) {
 
 const onCreateInventorySuccess = function (response) {
   const inventory = response.inventory
+  QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
+    if (error) console.error(error)
+    inventory.qr = url
+  })
+
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
   $('#item').prepend(showInventoryHTML)
@@ -115,6 +120,11 @@ const onCreateInventoryFailure = function (response) {
 
 const onUpdateInventorySuccess = function (response) {
   const inventory = response.inventory
+  QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
+    if (error) console.error(error)
+    inventory.qr = url
+  })
+
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
   $('#item').prepend(showInventoryHTML)
@@ -136,6 +146,13 @@ const onUpdateInventoryFailure = function (response) {
 
 const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
+
+  inventories.forEach(function (inventory) {
+    QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
+      if (error) console.error(error)
+      inventory.qr = url
+    })
+  })
 
   successMessage()
   resetForms()
