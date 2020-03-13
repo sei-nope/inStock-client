@@ -121,7 +121,6 @@ const onCreateInventorySuccess = function (response) {
   }
 
   const newThing = JSON.stringify(newThang)
-  console.log(newThing)
   QRCode.toDataURL(`${newThing}`, function (error, url) {
     if (error) console.error(error)
     inventory.qr = url
@@ -207,9 +206,6 @@ const onIndexInventoriesSuccess = function (response) {
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
   $('.inventory-content').html(indexInventoriesHTML)
   $('#message').text('Here are all your items in your inventory.')
-  console.log(response.inventories)
-
-  console.log(inventories)
 }
 
 const onIndexInventoriesFailure = function (response) {
