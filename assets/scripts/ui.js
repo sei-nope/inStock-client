@@ -109,7 +109,19 @@ const onSignOutFailure = function (response) {
 const onCreateInventorySuccess = function (response) {
   const inventory = response.inventory
 
-  const newThing = JSON.stringify(inventory)
+  const time = new Date(`${inventory.updatedAt}`)
+
+  const newThang = {
+    inventory: {
+      name: `${inventory.name}`,
+      quantity: `${inventory.quantity}`,
+      price: `${inventory.price}`,
+      updatedAt: `${time}`
+    }
+  }
+
+  const newThing = JSON.stringify(newThang)
+  console.log(newThing)
   QRCode.toDataURL(`${newThing}`, function (error, url) {
     if (error) console.error(error)
     inventory.qr = url
@@ -133,7 +145,18 @@ const onCreateInventoryFailure = function (response) {
 const onUpdateInventorySuccess = function (response) {
   const inventory = response.inventory
 
-  const newThing = JSON.stringify(inventory)
+  const time = new Date(`${inventory.updatedAt}`)
+
+  const newThang = {
+    inventory: {
+      name: `${inventory.name}`,
+      quantity: `${inventory.quantity}`,
+      price: `${inventory.price}`,
+      updatedAt: `${time}`
+    }
+  }
+
+  const newThing = JSON.stringify(newThang)
   QRCode.toDataURL(`${newThing}`, function (error, url) {
     if (error) console.error(error)
     inventory.qr = url
@@ -162,7 +185,17 @@ const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
 
   inventories.forEach(function (inventory) {
-    const newThing = JSON.stringify(inventory)
+    const time = new Date(`${inventory.updatedAt}`)
+
+    const newThang = {
+      inventory: {
+        name: `${inventory.name}`,
+        quantity: `${inventory.quantity}`,
+        price: `${inventory.price}`,
+        updatedAt: `${time}`
+      }
+    }
+    const newThing = JSON.stringify(newThang)
     QRCode.toDataURL(`${newThing}`, function (error, url) {
       if (error) console.error(error)
       inventory.qr = url
