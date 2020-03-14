@@ -6,179 +6,227 @@
 
       <!-- Do not add `link` tags-->
       <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+      <link href="https://fonts.googleapis.com/css?family=Arvo:400,700&display=swap" rel="stylesheet">
 
       <!-- Do not add `script` tags-->
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
 
-    <!-- Sign Up Modal -->
     <body>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand">inStock</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <!-- Change Password Button -->
+              <a class="change-password-button nav-link" data-toggle="modal" data-target="#change-password-modal">Change Password</a>
+            </li>
+            <li class="nav-item">
+              <!-- Sign Out Button -->
+              <a id="sign-out" class="nav-link">Sign Out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-      <p id="message" class="message"></p>
+      <div id="sys-message" class="container">
 
-      <div class="container sign-up-button">
+      </div>
+      <div class="container cont">
+        <form id="sign-in-form" class="form sign-in">
+          <h1 class="text-center">inStock Co.</h1>
+          <h2>Welcome back</h2>
+          <label class="home-element">
+            <span id="sign-in-msg"></span>
+          </label>
+          <label class="home-element">
+            <span>Email</span>
+            <input class="home-element" name="credentials[email]" type="email" id="sign-in-email" required>
+          </label>
+          <label class="home-element">
+            <span>Password</span>
+            <input class="home-element" name="credentials[password]" type="password"   id="sign-in-password" required>
+          </label>
+          <button class="home-element" id="sign-in" type="submit">Sign In</button>
+        </form>
+        <div class="sub-cont">
+          <div class="img">
+            <div class="img__text m--up">
+              <h2>New here?</h2>
+              <p>Sign up and start managing your inventories</p>
+            </div>
+            <div class="img__text m--in">
+              <h2>One of us?</h2>
+              <p>If you already have an account, just sign in. We've missed you!</p>
+            </div>
+            <div class="img__btn">
+              <span class="m--up">Sign Up</span>
+              <span class="m--in">Sign In</span>
+            </div>
+          </div>
+          <form id="sign-up-form" class="form sign-up">
+            <h1 class="text-center">inStock Co.</h1>
+            <h2>Time to feel like home</h2>
+            <label class="home-element">
+              <span id="sign-up-msg"></span>
+            </label>
+            <label class="home-element">
+              <span>Email</span>
+              <input class="home-element" name="credentials[email]" type="email" id="sign-up-email" required>
+            </label>
+            <label class="home-element">
+              <span>Password</span>
+              <input class="home-element" name="credentials[password]" type="password" id="sign-up-password" required>
+            </label>
+            <label class="home-element">
+              <span>Confirm Password</span>
+              <input class="home-element" name="credentials[password_confirmation]"  type="password" id="confirm-password" required>
+            </label>
+            <button class="home-element" id="sign-up" type="submit" >Sign Up</button>
+          </form>
+        </div>
+      </div>
+<!-- Sign Up -->
+      <!-- <div class="container text-center">
         <div class="row">
-          <div class="col-md-4">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-up-modal">Click here to sign up!</button>
-            <div class="modal" id="sign-up-modal">
-              <div class="modal-dialogue">
-                <div class="modal-content">
-                  <div class="modal-header">Sign Up</div>
-                  <p id="modal-message-sign-up"></p>
-                  <div class="modal-body">
-                    <form id="sign-up-form">
-                      <fieldset>
-                        <label for="credentials[email]">Email</label>
-                        <input name="credentials[email]" type="email" id="sign-up-email" placeholder="example@example.com"   required>
-                        <br>
-                        <label for="credentials[password]">Password</label>
-                        <input name="credentials[password]" type="password"   id="sign-up-password" placeholder="Password" required>
-                        <br>
-                        <label for="credentials[password_confirmation]">Confirm Password</label>
-                        <input name="credentials[password_confirmation]"  type="password" id="confirm-password"  placeholder="Confirm Password" required>
-                      </fieldset>
-                      <button id="sign-up" type="submit" class="btn-default">Sign Up</button>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
-                  </div>
+          <div class="col-md-6 mt-2">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">
+                  <h4>Sign Up</h4>
+                </div>
+                <div class="card-text">
+                  <form id="sign-up-form">
+                    <fieldset>
+                      <label for="credentials[email]" class="sr-only">Email</label>
+                      <input class="form-control" name="credentials[email]" type="email" id="sign-up-email" placeholder="Email" required>
+                      <br>
+                      <label for="credentials[password]" class="sr-only">Password</label>
+                      <input class="form-control" name="credentials[password]" type="password"   id="sign-up-password" placeholder="Password" required>
+                      <br>
+                      <label for="credentials[password_confirmation]" class="sr-only">Confirm Password</label>
+                      <input class="form-control" name="credentials[password_confirmation]"  type="password" id="confirm-password"  placeholder="Confirm Password" required>
+                    </fieldset>
+                    <br>
+                    <button id="sign-up" type="submit" class="btn btn-secondary">Sign Up</button>
+                  </form>
+                </div>
+              </div>
+            </div> -->
+
+          <!-- Sign In -->
+          <!-- </div>
+          <div class="col-md-6 mt-2">
+            <div class="card">
+              <div class="card-body">
+                <div class="card-title">
+                  <h4>Sign In</h4>
+                </div>
+                <div class="card-text">
+                  <form id="sign-in-form" class="form-">
+                    <fieldset>
+                      <label for="credentials[email]" class="sr-only">Email</label>
+                      <input class="form-control" name="credentials[email]" type="email" id="sign-in-email" placeholder="Email"   required>
+                      <br>
+                      <label for="credentials[password]" class="sr-only">Password</label>
+                      <input class="form-control" name="credentials[password]" type="password"   id="sign-in-password" placeholder="Password" required>
+                      <br>
+                    </fieldset>
+                    <button id="sign-in" type="submit" class="btn btn-secondary">Sign In</button>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Sign In Modal -->
-      <div class="container sign-in-button">
-        <div class="row">
-          <div class="col-md-4">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-in-modal">Click here to sign in!</button>
-            <div class="modal" id="sign-in-modal">
-              <div class="modal-dialogue">
-                <div class="modal-content">
-                  <div class="modal-header">Sign In</div>
-                  <p id="modal-message-sign-in"></p>
-                  <div class="modal-body">
-                    <form id="sign-in-form">
-                      <fieldset>
-                        <label for="credentials[email]">Email</label>
-                        <input name="credentials[email]" type="email" id="sign-in-email" placeholder="example@example.com"   required>
-                        <br>
-                        <label for="credentials[password]">Password</label>
-                        <input name="credentials[password]" type="password"   id="sign-in-password" placeholder="Password" required>
-                        <br>
-                      </fieldset>
-                      <button id="sign-in" type="submit" class="btn-default">Sign In</button>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <!-- Change Password Modal -->
+              <div class="modal" id="change-password-modal">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Change Password</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p id="modal-message-change-password"></p>
+                      <div id="change-pw-msg"></div>
+                      <form class="form form-inline" id="change-password-form">
 
+                          <input name="passwords[old]" type="password" id="old-password" placeholder="Old Password"  class="form-control" required>
+                          <input name="passwords[new]" type="password"   id="new-password" placeholder="New Password"  class="form-control " required>
 
-      <!-- Change Password Modal -->
-      <div class="container change-password-button">
-        <div class="row">
-          <div class="col-md-4">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#change-password-modal">Change Password!</button>
-            <div class="modal" id="change-password-modal">
-              <div class="modal-dialogue">
-                <div class="modal-content">
-                  <div class="modal-header">Change Password</div>
-                  <p id="modal-message-change-password"></p>
-                  <div class="modal-body">
-                    <form id="change-password-form">
-                      <fieldset>
-                        <label for="passwords[old]">Old Password</label>
-                        <input name="passwords[old]" type="password" id="old-password" placeholder="Your Old Password"   required>
-                        <br>
-                        <label for="passwords[new]">New Password</label>
-                        <input name="passwords[new]" type="password"   id="new-password" placeholder="Your New Password" required>
-                      </fieldset>
-                      <button id="change-password" type="submit" class="btn-default">Change Password</button>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
+                        <button id="change-password" type="submit" class="btn btn-info mt-2">Change Password</button>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-sm btn-info close-pw-btn" data-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
 
-      <form id="sign-out-form">
-          <button id="sign-out" type="submit" class="btn-danger">Sign Out</button>
-      </form>
 
-      <button id="show-inventory" class='btn btn-info'>Show Your Inventory!</button>
-
-
-      <div class="container update-inventory-button">
-        <div class="row">
-          <div class="col-md-4">
+      <!-- Update Inventory Modal -->
             <div class="modal" id="update-inventory-modal">
-              <div class="modal-dialogue">
+              <div class="modal-dialog">
                 <div class="modal-content">
-                  <div class="modal-header">Update Inventory</div>
-                  <p id="modal-message-update-inventory"></p>
+                  <div class="modal-header">
+                    <h5 class="modal-title">Update Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
                   <div class="modal-body">
+                    <p id="modal-message-update-inventory"></p>
                     <form id="update-inventory-form">
-                        <fieldset>
-                          <label for="inventory[name]">Name</label>
-                          <input type='text' name='inventory[name]' placeholder='name'>
-                          <br>
-                          <label for="inventory[quantity]">Qty</label>
-                          <input type='number' name='inventory[quantity]' placeholder='quantity'>
-                          <br>
-                          <label for="inventory[price]">Price</label>
-                          <input type='number' step='0.01' name='inventory[price]' placeholder='price'>
-                        </fieldset>
-                      <button id="update-inventory" type="submit" class="btn-info">Update!</button>
+                      <label for="inventory[name]">Name</label>
+                      <input type='text' name='inventory[name]' placeholder='name' class="form-control mb-2 mr-sm-2">
+                      <label for="inventory[quantity]">Quantity</label>
+                      <input type='number' name='inventory[quantity]' placeholder='quantity' class="form-control mb-2 mr-sm-2">
+                      <label for="inventory[price]">Price</label>
+                      <input type='number' step='0.01' name='inventory[price]' placeholder='price' class="form-control mb-2 mr-sm-2">
+                      <button id="update-inventory" type="submit" class="btn btn-info mb-2">Update</button>
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-info close-update-btn" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div class='create-inventory'>
-        <form id="create-inventory-form">
-          <h5>Create inventory</h5>
-            <fieldset>
-              <label for="inventory[name]">Name</label>
-              <input type='text' name='inventory[name]' required>
-              <br>
-              <label for="inventory[quantity]">Qty</label>
-              <input type='number' name='inventory[quantity]' required>
-              <br>
-              <label for="inventory[price]">Price</label>
-              <input type='number' step='0.01' name='inventory[price]' required>
-            </fieldset>
-          <button id="create-inventory" type="submit" class="btn btn-info">Submit</button>
+      <div class='container create-inventory'>
+        <h5>Create inventory</h5>
+        <form class="form-inline" id="create-inventory-form">
+          <label for="inventory[name]" class="sr-only">Name</label>
+          <input class="form-control mb-2 mr-sm-2" id="inventory[name]" placeholder="name" type='text' name='inventory[name]' required>
+          <label for="inventory[quantity]" class="sr-only">Quantity</label>
+          <input class="form-control mb-2 mr-sm-2" id="inventory[quantity]" placeholder="quantity" type='number' name='inventory[quantity]' required>
+          <label class="sr-only" for="inventory[price]">Price</label>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">$</div>
+            </div>
+            <input type="number" step='0.01' class="form-control" id="inventory[price]" placeholder="price" name='inventory[price]' required>
+          </div>
+          <button id="create-inventory" type="submit" class="btn btn-info mb-2">Submit</button>
         </form>
       </div>
 
       <div class='container'>
         <div id='inventory-content' class='inventory-content'>
+
         </div>
       </div>
-      <footer class="footer"> © Team Nope 2020 </footer>
+      <footer class="footer text-center text-muted small"> © Team Nope™ <span class="year"></span> </footer>
     </body>
 </html>

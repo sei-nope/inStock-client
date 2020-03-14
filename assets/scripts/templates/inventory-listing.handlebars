@@ -1,21 +1,31 @@
-  {{#each inventories as |inventory|}}
-    <section id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
-      <h3>
-        {{inventory.name}}
-      </h3>
-        <p>
-          In Stock: {{inventory.quantity}}
-        </p>
-        <p>
-          Price: ${{inventory.price}}
-        </p>
-        <p>
+<table class="table table-hover inventory-content">
+  <thead>
+    <tr>
+      <th scope="col">Item</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody id="item">
+    {{#if inventories}}
+      {{#each inventories as |inventory|}}
+        <tr id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
+          <td scope="row">{{inventory.name}}</td>
+          <td>{{inventory.quantity}}</td>
+          <td>${{inventory.price}}</td>
           {{> update-inventory id=inventory._id}}
-        </p>
-        <p>
           {{> delete-inventory id=inventory._id}}
-        </p>
+        </tr>
+      {{/each}}
+  </tbody>
+</table>
 
-    </section>
-
-    {{/each}}
+    {{else}}
+  </tbody>
+</table>
+      <div class="container text-center empty-table">
+        <p class="text-muted">No items in inventory. Create some!</p>
+      </div>
+{{/if}}

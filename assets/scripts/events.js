@@ -21,10 +21,12 @@ const onSignIn = function (event) {
 
   const form = event.target
   const data = getFormFields(form)
-  //
 
   api.signIn(data)
-    .then(ui.onSignInSuccess)
+    .then((response) => {
+      ui.onSignInSuccess(response)
+      onIndexInventory(event)
+    })
     .catch(ui.onSignInFailure)
 }
 
@@ -65,12 +67,14 @@ const onGetUpdateInventory = (event) => {
   updateId = undefined
   const id = $(event.target).data('id')
   updateId = id
+  console.log(updateId)
 }
 
 const onUpdateInventory = (event) => {
   event.preventDefault()
   const form = event.target
   const data = getFormFields(form)
+  console.log(data, updateId)
   data.inventory.name = data.inventory.name.toLowerCase()
   api.updateInventory(updateId, data)
     .then(ui.onUpdateInventorySuccess)
