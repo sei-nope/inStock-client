@@ -15,44 +15,43 @@
 
     <body>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#"></a>
+        <a class="navbar-brand">inStock</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <!-- Show Inventory Button -->
-              <p id="show-inventory" class="nav-link">Show Your Inventory</p>
-            </li>
+          <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <!-- Change Password Button -->
-              <p class="change-password-button nav-link" data-toggle="modal" data-target="#change-password-modal">Change Password</p>
+              <a class="change-password-button nav-link" data-toggle="modal" data-target="#change-password-modal">Change Password</a>
             </li>
             <li class="nav-item">
               <!-- Sign Out Button -->
-              <p id="sign-out" class="nav-link">Sign Out</p>
+              <a id="sign-out" class="nav-link">Sign Out</a>
             </li>
           </ul>
         </div>
       </nav>
-      <p id="message" class="message"></p>
+
+      <div id="sys-message" class="container">
+
+      </div>
       <div class="container cont">
         <form id="sign-in-form" class="form sign-in">
           <h1 class="text-center">inStock Co.</h1>
           <h2>Welcome back</h2>
-          <label>
-            <span class="sign-in-fail failure-message"></span>
+          <label class="home-element">
+            <span id="sign-in-msg"></span>
           </label>
-          <label>
+          <label class="home-element">
             <span>Email</span>
-            <input name="credentials[email]" type="email" id="sign-in-email" required>
+            <input class="home-element" name="credentials[email]" type="email" id="sign-in-email" required>
           </label>
-          <label>
+          <label class="home-element">
             <span>Password</span>
-            <input name="credentials[password]" type="password"   id="sign-in-password" required>
+            <input class="home-element" name="credentials[password]" type="password"   id="sign-in-password" required>
           </label>
-          <button id="sign-in" type="submit" class="submit">Sign In</button>
+          <button class="home-element" id="sign-in" type="submit">Sign In</button>
         </form>
         <div class="sub-cont">
           <div class="img">
@@ -72,22 +71,22 @@
           <form id="sign-up-form" class="form sign-up">
             <h1 class="text-center">inStock Co.</h1>
             <h2>Time to feel like home</h2>
-            <label>
-              <span class="sign-up-fail failure-message"></span>
+            <label class="home-element">
+              <span id="sign-up-msg"></span>
             </label>
-            <label>
+            <label class="home-element">
               <span>Email</span>
-              <input name="credentials[email]" type="email" id="sign-up-email" required>
+              <input class="home-element" name="credentials[email]" type="email" id="sign-up-email" required>
             </label>
-            <label>
+            <label class="home-element">
               <span>Password</span>
-              <input name="credentials[password]" type="password" id="sign-up-password" required>
+              <input class="home-element" name="credentials[password]" type="password" id="sign-up-password" required>
             </label>
-            <label>
+            <label class="home-element">
               <span>Confirm Password</span>
-              <input name="credentials[password_confirmation]"  type="password" id="confirm-password" required>
+              <input class="home-element" name="credentials[password_confirmation]"  type="password" id="confirm-password" required>
             </label>
-            <button id="sign-up" type="submit" class="submit">Sign Up</button>
+            <button class="home-element" id="sign-up" type="submit" >Sign Up</button>
           </form>
         </div>
       </div>
@@ -147,85 +146,79 @@
       </div> -->
 
         <!-- Change Password Modal -->
-        <div class="container change-password-button">
-          <div class="row">
-            <div class="col-md-4">
               <div class="modal" id="change-password-modal">
-                <div class="modal-dialogue">
+                <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header">Change Password</div>
-                    <p id="modal-message-change-password"></p>
+                    <div class="modal-header">
+                      <h5 class="modal-title">Change Password</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
                     <div class="modal-body">
-                      <form id="change-password-form">
-                        <fieldset>
-                          <label for="passwords[old]">Old Password</label>
-                          <input name="passwords[old]" type="password" id="old-password" placeholder="Your Old Password"   required>
-                          <br>
-                          <label for="passwords[new]">New Password</label>
-                          <input name="passwords[new]" type="password"   id="new-password" placeholder="Your New Password" required>
-                        </fieldset>
-                        <button id="change-password" type="submit" class="btn-default">Change Password</button>
+                      <p id="modal-message-change-password"></p>
+                      <div id="change-pw-msg"></div>
+                      <form class="form form-inline" id="change-password-form">
+
+                          <input name="passwords[old]" type="password" id="old-password" placeholder="Old Password"  class="form-control" required>
+                          <input name="passwords[new]" type="password"   id="new-password" placeholder="New Password"  class="form-control " required>
+
+                        <button id="change-password" type="submit" class="btn btn-info mt-2">Change Password</button>
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-sm btn-info close-pw-btn" data-dismiss="modal">Close</button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
+
 
 
       <!-- Update Inventory Modal -->
-      <div class="container update-inventory-button">
-        <div class="row">
-          <div class="col-md-4">
             <div class="modal" id="update-inventory-modal">
-              <div class="modal-dialogue">
+              <div class="modal-dialog">
                 <div class="modal-content">
-                  <div class="modal-header">Update Inventory</div>
-                  <p id="modal-message-update-inventory"></p>
+                  <div class="modal-header">
+                    <h5 class="modal-title">Update Item</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
                   <div class="modal-body">
+                    <p id="modal-message-update-inventory"></p>
                     <form id="update-inventory-form">
-                        <fieldset>
-                          <label for="inventory[name]">Name</label>
-                          <input type='text' name='inventory[name]' placeholder='name'>
-                          <br>
-                          <label for="inventory[quantity]">Qty</label>
-                          <input type='number' name='inventory[quantity]' placeholder='quantity'>
-                          <br>
-                          <label for="inventory[price]">Price</label>
-                          <input type='number' step='0.01' name='inventory[price]' placeholder='price'>
-                        </fieldset>
-                      <button id="update-inventory" type="submit" class="btn-info">Update!</button>
+                      <label for="inventory[name]">Name</label>
+                      <input type='text' name='inventory[name]' placeholder='name' class="form-control mb-2 mr-sm-2">
+                      <label for="inventory[quantity]">Quantity</label>
+                      <input type='number' name='inventory[quantity]' placeholder='quantity' class="form-control mb-2 mr-sm-2">
+                      <label for="inventory[price]">Price</label>
+                      <input type='number' step='0.01' name='inventory[price]' placeholder='price' class="form-control mb-2 mr-sm-2">
+                      <button id="update-inventory" type="submit" class="btn btn-info mb-2">Update</button>
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn-danger close" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-info close-update-btn" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div class='create-inventory'>
-        <form id="create-inventory-form">
-          <h5>Create inventory</h5>
-            <fieldset>
-              <label for="inventory[name]">Name</label>
-              <input type='text' name='inventory[name]' required>
-              <br>
-              <label for="inventory[quantity]">Qty</label>
-              <input type='number' name='inventory[quantity]' required>
-              <br>
-              <label for="inventory[price]">Price</label>
-              <input type='number' step='0.01' name='inventory[price]' required>
-            </fieldset>
-          <button id="create-inventory" type="submit" class="btn btn-info">Submit</button>
+      <div class='container create-inventory'>
+        <h5>Create inventory</h5>
+        <form class="form-inline" id="create-inventory-form">
+          <label for="inventory[name]" class="sr-only">Name</label>
+          <input class="form-control mb-2 mr-sm-2" id="inventory[name]" placeholder="name" type='text' name='inventory[name]' required>
+          <label for="inventory[quantity]" class="sr-only">Quantity</label>
+          <input class="form-control mb-2 mr-sm-2" id="inventory[quantity]" placeholder="quantity" type='number' name='inventory[quantity]' required>
+          <label class="sr-only" for="inventory[price]">Price</label>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">$</div>
+            </div>
+            <input type="number" step='0.01' class="form-control" id="inventory[price]" placeholder="price" name='inventory[price]' required>
+          </div>
+          <button id="create-inventory" type="submit" class="btn btn-info mb-2">Submit</button>
         </form>
       </div>
 

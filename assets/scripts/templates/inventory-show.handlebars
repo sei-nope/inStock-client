@@ -2,6 +2,6 @@
   <td scope="row">{{inventory.name}}</td>
   <td>{{inventory.quantity}}</td>
   <td>${{inventory.price}}</td>
-  <td>{{> update-inventory id=inventory._id}}</td>
-  <td>{{> delete-inventory id=inventory._id}}</td>
+  {{> update-inventory id=inventory._id}}
+  {{> delete-inventory id=inventory._id}}
 </tr>

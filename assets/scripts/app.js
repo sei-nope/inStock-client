@@ -26,5 +26,5 @@ $(() => {
   $('.inventory-content').on('click', '.update-inventory', authEvents.onGetUpdateInventory)
   $('#update-inventory-form').on('submit', authEvents.onUpdateInventory)
   $('#create-inventory-form').on('submit', authEvents.onCreateInventory)
-  $('#show-inventory').on('click', authEvents.onIndexInventory)
+  $('.navbar-brand').on('click', authEvents.onIndexInventory)
 })

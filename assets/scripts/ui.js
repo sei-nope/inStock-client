@@ -6,13 +6,29 @@ const showInventoryTemplate = require('./templates/inventory-show.handlebars')
 const QRCode = require('qrcode')
 const config = require('./config.js')
 
-const successMessage = function () {
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
+const successMessage = function (msg, type) {
+  const alertHtml = `<div class="alert alert-success fade show ${type}" role="alert">
+    ${msg}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>`
+  $('#sys-message').append(alertHtml)
+  setTimeout(function () {
+    $(`.${type}`).fadeOut()
+  }, 3000)
 }
-const failureMessage = function () {
-  $('#message').removeClass()
-  $('#message').addClass('failure-message')
+const failureMessage = function (msg, type) {
+  const alertHtml = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    ${msg}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>`
+  $('#sys-message').append(alertHtml)
+  setTimeout(function () {
+    $(`.${type}`).fadeOut()
+  }, 3000)
 }
 const resetForms = function () {
   $('#sign-up-form').trigger('reset')
@@ -23,25 +39,29 @@ const resetForms = function () {
 }
 // Sign Up
 const onSignUpSuccess = function (response) {
-  successMessage()
-  $('#message').text(response.user.email + ' successfully signed up!')
+  $('#sign-up-msg').empty()
+  $('#sign-in-msg').empty()
+  $('#sign-up-msg')
+    .removeClass()
+    .addClass('success-message')
+    .text(response.user.email + ' successfully signed up!')
   // Clear Form Fields
   resetForms()
-  // $('.close').trigger('click')
 }
 
 const onSignUpFailure = function (response) {
-  //
-  failureMessage()
-  $('#message').text('Failed to sign up')
-  // Clear Form Fields
-  resetForms()
+  $('#sign-up-msg')
+    .removeClass()
+    .addClass('failure-message')
+    .text('Failed to sign up')
 }
 
 // Sign In
 const onSignInSuccess = function (response) {
-  successMessage()
-  $('#message').text(response.user.email + ' successfully signed in')
+  $('#sign-in-msg').empty()
+  $('#sign-up-msg').empty()
+  const msg = `${response.user.email} successfully signed in`
+  successMessage(msg, 'sign-in-success')
   // Clear Form Fields
   resetForms()
   // Show These Stuff
@@ -54,45 +74,47 @@ const onSignInSuccess = function (response) {
 }
 
 const onSignInFailure = function (response) {
-  failureMessage()
-  $('#message').text('Signed in failed. 😭')
+  $('#sign-in-msg')
+    .removeClass()
+    .addClass('failure-message')
+    .text('Sign in failed')
   // Clear Form Fields
   resetForms()
 }
 
 // Change Password
 const onChangePasswordSuccess = function (response) {
-  successMessage()
-  $('#message').text('Changed Password Succeeded!')
+  const msg = 'Successfully changed password'
+  successMessage(msg, 'change-pw')
   // Clear Form Fields
   resetForms()
-  $('.close').trigger('click')
+  $('.close-pw-btn').trigger('click')
 }
 
 const onChangePasswordFailure = function (response) {
-  $('#modal-message-change-password').removeClass()
-  $('#modal-message-change-password').addClass('failure-message')
-  $('#modal-message-change-password').text('You can not change your password muahahaha!')
+  $('#change-pw-msg')
+    .removeClass()
+    .addClass('failure-message')
+    .text('Failed to change password')
   // Clear Form Fields
   resetForms()
 }
 
 // Sign Out
 const onSignOutSuccess = function (response) {
-  successMessage()
-  $('#message').text('Sign Out Succeeded!')
+  const msg = 'Successfully signed out'
+  successMessage(msg, 'sign-out')
   // Hide these stuff
   $('.create-inventory').hide()
   $('nav').hide()
   // Show these stuff
   $('.cont').show()
-  resetForms()
   $('.inventory-content').empty()
 }
 
 const onSignOutFailure = function (response) {
-  failureMessage()
-  $('#message').text('Sign Out Failed 😭')
+  const msg = 'Failed to sign out'
+  failureMessage(msg, 'sign-out')
   resetForms()
 }
 
@@ -106,16 +128,13 @@ const onCreateInventorySuccess = function (response) {
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).remove()
   $('#item').prepend(showInventoryHTML)
-  successMessage()
+  $('.empty-table').remove()
   resetForms()
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
-  $('#message').text('Created!')
 }
 
 const onCreateInventoryFailure = function (response) {
-  failureMessage()
-  $('#message').text('Create Attempt Failed! 😱')
+  const msg = 'Failed to create inventory'
+  failureMessage(msg, 'create-fail')
 }
 
 const onUpdateInventorySuccess = function (response) {
@@ -129,13 +148,10 @@ const onUpdateInventorySuccess = function (response) {
   $(`#${inventory._id}`).remove()
   $('#item').prepend(showInventoryHTML)
   window.scrollTo(0, 0)
-  successMessage()
   resetForms()
-  $('.close').trigger('click')
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
-  $('#message').text('Item Updated!')
-  $('#modal-message-update-inventory').text('Item Successfully Updated')
+  const msg = 'Update successful'
+  successMessage(msg, 'update-success')
+  $('.close-update-btn').trigger('click')
 }
 
 const onUpdateInventoryFailure = function (response) {
@@ -146,38 +162,30 @@ const onUpdateInventoryFailure = function (response) {
 
 const onIndexInventoriesSuccess = function (response) {
   const inventories = response.inventories
-
   inventories.forEach(function (inventory) {
     QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
       if (error) console.error(error)
       inventory.qr = url
     })
   })
-
-  successMessage()
-  resetForms()
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
   $('.inventory-content').html(indexInventoriesHTML)
-  $('#message').text('Here are all your items in your inventory.')
 }
 
 const onIndexInventoriesFailure = function (response) {
-  failureMessage()
-  $('#message').text('You broke the database!')
+  const msg = 'Unable to retrieve inventory'
+  failureMessage(msg, 'index-fail')
 }
 
 const onDeleteInventorySuccess = function (response, id) {
-  successMessage()
-
   $(`#${id}`).remove()
-  $('#message').removeClass()
-  $('#message').addClass('success-message')
-  $('#message').text('Item Deleted!')
+  const msg = 'Item deleted!'
+  successMessage(msg, 'delete-success')
 }
 
 const onDeleteInventoryFailure = function (response) {
-  failureMessage()
-  $('#message').text('You can not delete the item muahahaha!')
+  const msg = 'Failed to delete item!'
+  failureMessage(msg, 'delete-fail')
 }
 
 module.exports = {

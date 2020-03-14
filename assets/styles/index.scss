@@ -3,26 +3,33 @@
 $trashcan: #c21807;
 $edit: #29ab87;
 
+a {
+  cursor: pointer;
+}
+
 body {
   font-family: 'Arvo', serif;
 }
 
 .fa-trash-alt {
   color: $trashcan;
-  cursor: pointer;
 }
 
 .fa-edit {
   color: $edit;
-  cursor: pointer;
 }
 
 .failure-message {
-  color: red;
+  color: $trashcan;
 }
 
-input,
-button {
+.success-message {
+  color: $edit;
+}
+path{
+  pointer-events: none;
+}
+.home-element {
   background: none;
   border: 0;
   outline: none;
@@ -77,7 +84,7 @@ $diffRatio: ($contW - $imgW) / $contW;
   }
 }
 
-button {
+button.home-element {
   display: block;
   margin: 0 auto;
   width: $inputW;
@@ -122,7 +129,7 @@ button {
 
   @include signUpActive {
     &:before {
-      transform: translate3d($formW,0,0);
+      transform: translate3d($formW, 0, 0);
     }
   }
 
@@ -150,12 +157,12 @@ button {
     &.m--up {
 
       @include signUpActive {
-        transform: translateX($imgW*2);
+        transform: translateX($imgW);
       }
     }
 
     &.m--in {
-      transform: translateX($imgW * -2);
+      transform: translateX($contW * -1);
 
       @include signUpActive {
         transform: translateX(0);
@@ -222,7 +229,7 @@ h2 {
   text-align: center;
 }
 
-label {
+label.home-element {
   display: block;
   width: $inputW;
   margin: 25px auto 0;
@@ -235,7 +242,7 @@ label {
   }
 }
 
-.form input {
+input.home-element {
   display: block;
   width: 100%;
   margin-top: 5px;
@@ -245,7 +252,7 @@ label {
   text-align: center;
 }
 
-.submit {
+button.home-element {
   margin-top: 40px;
   margin-bottom: 20px;
   background: #d4af7a;
@@ -258,7 +265,7 @@ label {
   @include signUpActive {
     transition-timing-function: ease-in-out;
     transition-duration: $switchAT;
-    transform: translate3d($formW,0,0);
+    transform: translate3d($imgW*1,0,0);
   }
 }
 

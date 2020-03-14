@@ -9,14 +9,23 @@
     </tr>
   </thead>
   <tbody id="item">
-    {{#each inventories as |inventory|}}
-      <tr id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
-        <td scope="row">{{inventory.name}}</td>
-        <td>{{inventory.quantity}}</td>
-        <td>${{inventory.price}}</td>
-        <td>{{> update-inventory id=inventory._id}}</td>
-        <td>{{> delete-inventory id=inventory._id}}</td>
-      </tr>
-        {{/each}}
+    {{#if inventories}}
+      {{#each inventories as |inventory|}}
+        <tr id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
+          <td scope="row">{{inventory.name}}</td>
+          <td>{{inventory.quantity}}</td>
+          <td>${{inventory.price}}</td>
+          {{> update-inventory id=inventory._id}}
+          {{> delete-inventory id=inventory._id}}
+        </tr>
+      {{/each}}
   </tbody>
 </table>
+
+    {{else}}
+  </tbody>
+</table>
+      <div class="container text-center empty-table">
+        <p class="text-muted">No items in inventory. Create some!</p>
+      </div>
+{{/if}}
