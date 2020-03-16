@@ -79,7 +79,7 @@ const onQuickAddInventory = (event) => {
     }
   }
   api.updateInventory(id, data)
-    .then(ui.onUpdateInventorySuccess)
+    .then(ui.onQuickChangeInventory)
     .catch(ui.onUpdateInventoryFailure)
 }
 
@@ -92,7 +92,7 @@ const onQuickMinusInventory = (event) => {
     }
   }
   api.updateInventory(id, data)
-    .then(ui.onUpdateInventorySuccess)
+    .then(ui.onQuickChangeInventory)
     .catch(ui.onUpdateInventoryFailure)
 }
 
