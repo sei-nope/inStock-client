@@ -50,6 +50,7 @@ const onSignUpSuccess = function (response) {
 }
 
 const onSignUpFailure = function (response) {
+  console.log(response.responseText)
   $('#sign-up-msg')
     .removeClass()
     .addClass('failure-message')
@@ -156,7 +157,7 @@ const onUpdateInventorySuccess = function (response) {
   $('.close-update-btn').trigger('click')
 }
 
-const onQuickChangeInventory = function (response) {
+const onQuickChangeInventorySuccess = function (response) {
   const inventory = response.inventory
   QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
     if (error) console.error(error)
@@ -166,6 +167,12 @@ const onQuickChangeInventory = function (response) {
   $(`#${inventory._id}`).remove()
   $('#item').prepend(showInventoryHTML)
   resetForms()
+}
+
+const onQuickChangeInventoryFailure = function (response) {
+  const err = JSON.parse(response.responseText)
+  const msg = err.message
+  failureMessage(msg, 'quick-change-fail')
 }
 
 const onUpdateInventoryFailure = function (response) {
@@ -221,5 +228,6 @@ module.exports = {
   onDeleteInventoryFailure,
   successMessage,
   failureMessage,
-  onQuickChangeInventory
+  onQuickChangeInventorySuccess,
+  onQuickChangeInventoryFailure
 }

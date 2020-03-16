@@ -19,12 +19,12 @@ body {
   color: $edit;
 }
 
-.failure-message {
-  color: $trashcan;
+label.home-element span.failure-message {
+  color: red;
 }
 
 .success-message {
-  color: $edit;
+  color: limegreen;
 }
 
 path{
