@@ -66,7 +66,6 @@ const onGetUpdateInventory = (event) => {
   updateId = undefined
   const id = $(event.target).data('id')
   updateId = id
-  console.log(updateId)
   ui.editInventories(updateId)
 }
 
@@ -79,8 +78,8 @@ const onQuickAddInventory = (event) => {
     }
   }
   api.updateInventory(id, data)
-    .then(ui.onUpdateInventorySuccess)
-    .catch(ui.onUpdateInventoryFailure)
+    .then(ui.onQuickChangeInventorySuccess)
+    .catch(ui.onQuickChangeInventoryFailure)
 }
 
 const onQuickMinusInventory = (event) => {
@@ -92,8 +91,8 @@ const onQuickMinusInventory = (event) => {
     }
   }
   api.updateInventory(id, data)
-    .then(ui.onUpdateInventorySuccess)
-    .catch(ui.onUpdateInventoryFailure)
+    .then(ui.onQuickChangeInventorySuccess)
+    .catch(ui.onQuickChangeInventoryFailure)
 }
 
 const onUpdateInventory = (event) => {

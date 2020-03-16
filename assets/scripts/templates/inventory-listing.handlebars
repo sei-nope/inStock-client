@@ -1,6 +1,7 @@
 <table class="table table-hover inventory-content">
+
   <thead>
-    <tr>
+    <tr class="table-header">
       <th scope="col">Item</th>
       <th scope="col">Quantity</th>
       <th scope="col">Price</th>
@@ -8,7 +9,7 @@
       <th scope="col"></th>
     </tr>
   </thead>
-  {{#if inventories}}
+
   <tbody id="item">
     {{#if inventories}}
       {{#each inventories as |inventory|}}
@@ -46,7 +47,7 @@
                   </p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-sm btn-info close-update-btn" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-sm btn-info close-update-btn modal-submit-button" data-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>
