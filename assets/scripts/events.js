@@ -67,7 +67,6 @@ const onGetUpdateInventory = (event) => {
   updateId = undefined
   const id = $(event.target).data('id')
   updateId = id
-  console.log(updateId)
 }
 
 const onQuickAddInventory = (event) => {
@@ -100,7 +99,6 @@ const onUpdateInventory = (event) => {
   event.preventDefault()
   const form = event.target
   const data = getFormFields(form)
-  console.log(data, updateId)
   data.inventory.name = data.inventory.name.toLowerCase()
   api.updateInventory(updateId, data)
     .then(ui.onUpdateInventorySuccess)
