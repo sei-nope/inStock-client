@@ -1,7 +1,5 @@
-<td class="update-inventory" data-id="{{id}}">
-  {{#if isEditing}}
-  <input type="submit" class="btn btn-success" id="submit-edit" />
-  {{else}}
-  <i class="fas fa-edit" data-id="{{id}}"></i>
-  {{/if}}
-</td>
+{{#if isEditing}}
+<button class="fas fa-check" id="submit-edit" data-id="{{id}}"></button>
+{{else}}
+<i class="fas fa-edit update-inventory" data-id="{{id}}"></i>
+{{/if}}

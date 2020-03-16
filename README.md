@@ -4,10 +4,6 @@
 **Set Up**
 
 **Dependencies**
-<<<<<<< Updated upstream
--`npm install`
--`npm isntall grunt`
-=======
 - `npm install`
 - `npm isntall grunt`
 - `npm run s` to launch the local server for testing
@@ -18,7 +14,6 @@
 - [Browser Template] (https://git.generalassemb.ly/ga-wdi-boston/browser-template)
 - [API Template] (https://git.generalassemb.ly/ga-wdi-boston/express-api-template)
 - [Login Template] (https://codepen.io/suez/pen/RpNXOR?editors=1000)
->>>>>>> Stashed changes
 
 
 **Wireframe**
