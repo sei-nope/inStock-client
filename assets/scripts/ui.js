@@ -123,6 +123,8 @@ const onCreateInventorySuccess = function (response) {
   QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
     if (error) console.error(error)
     inventory.qr = url
+    const msg = 'Created inventory'
+    successMessage(msg, 'create-success')
   })
 
   const showInventoryHTML = showInventoryTemplate({inventory: inventory})
@@ -152,6 +154,18 @@ const onUpdateInventorySuccess = function (response) {
   const msg = 'Update successful'
   successMessage(msg, 'update-success')
   $('.close-update-btn').trigger('click')
+}
+
+const onQuickChangeInventory = function (response) {
+  const inventory = response.inventory
+  QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
+    if (error) console.error(error)
+    inventory.qr = url
+  })
+  const showInventoryHTML = showInventoryTemplate({inventory: inventory})
+  $(`#${inventory._id}`).remove()
+  $('#item').prepend(showInventoryHTML)
+  resetForms()
 }
 
 const onUpdateInventoryFailure = function (response) {
@@ -206,5 +220,6 @@ module.exports = {
   onDeleteInventorySuccess,
   onDeleteInventoryFailure,
   successMessage,
-  failureMessage
+  failureMessage,
+  onQuickChangeInventory
 }
