@@ -120,6 +120,7 @@ const onSignOutFailure = function (response) {
 }
 
 const onCreateInventorySuccess = function (response) {
+  const $table = $('#table')
   const inventory = response.inventory
   QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
     if (error) console.error(error)
@@ -127,10 +128,17 @@ const onCreateInventorySuccess = function (response) {
     const msg = 'Created inventory'
     successMessage(msg, 'create-success')
   })
+  // if item already exists
+  if($(`#${inventory._id}`).length > 0) {
+    // update the table
+    $table.bootstrapTable('updateRow', {index: 1, row: row})
+  } else {
+    // else append to table
 
-  const showInventoryHTML = showInventoryTemplate({inventory: inventory})
-  $(`#${inventory._id}`).remove()
-  $('#item').prepend(showInventoryHTML)
+  }
+
+  console.log($(`#${inventory._id}`).length)
+  // $('#table').bootstrapTable('append')
   $('.empty-table').remove()
   resetForms()
 }
@@ -192,6 +200,9 @@ const onIndexInventoriesSuccess = function (response) {
   })
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
   $('.inventory-content').html(indexInventoriesHTML)
+  $(function () {
+    $('#table').bootstrapTable()
+  })
 }
 
 const onIndexInventoriesFailure = function (response) {
