@@ -278,7 +278,7 @@ button.home-element {
   }
 }
 
-.table-header, .input-group-text {
+.table-header th, .input-group-text {
   background: #c9d7f8;
 }
 
@@ -306,4 +306,24 @@ button.modal-submit-button:hover {
   background-color: #c9d7f8;
   border: 1px solid black;
   margin: 20px 20px;
+}
+
+.inventory-content {
+  height: 480px;
+  overflow-y: auto;
+}
+
+.table-header th {
+  position: sticky;
+  top: 0;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #c9d7f8;
+  color: #422ca3;
+  text-align: center;
 }
