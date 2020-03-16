@@ -144,9 +144,9 @@ const onUpdateInventoryFailure = function (response) {
   $('#message').text('Update Attempt Failed')
 }
 
+let inventories
 const onIndexInventoriesSuccess = function (response) {
-  const inventories = response.inventories
-
+  inventories = response.inventories
   inventories.forEach(function (inventory) {
     QRCode.toDataURL(`${config.apiUrl}/inventories/${inventory._id}`, function (error, url) {
       if (error) console.error(error)
@@ -164,6 +164,14 @@ const onIndexInventoriesSuccess = function (response) {
 const onIndexInventoriesFailure = function (response) {
   failureMessage()
   $('#message').text('You broke the database!')
+}
+
+const editInventories = function (editingId) {
+  inventories.forEach(function (inventory) {
+    inventory.isEditing = editingId === inventory._id
+  })
+  const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
+  $('.inventory-content').html(indexInventoriesHTML)
 }
 
 const onDeleteInventorySuccess = function (response, id) {
@@ -197,6 +205,7 @@ module.exports = {
   onIndexInventoriesFailure,
   onDeleteInventorySuccess,
   onDeleteInventoryFailure,
+  editInventories,
   successMessage,
   failureMessage
 }

@@ -59,21 +59,22 @@ const onCreateInventory = (event) => {
 }
 
 let updateId
-
 const onGetUpdateInventory = (event) => {
   event.preventDefault()
-  updateId = undefined
-  const id = $(event.target).data('id')
-  updateId = id
+  updateId = $(event.target).data('id')
+  ui.editInventories(updateId)
 }
 
 const onUpdateInventory = (event) => {
   event.preventDefault()
-  const form = event.target
+  const form = $(event.target).closest('form')
   const data = getFormFields(form)
   data.inventory.name = data.inventory.name.toLowerCase()
   api.updateInventory(updateId, data)
     .then(ui.onUpdateInventorySuccess)
+    .then(() => {
+      updateId = null
+    })
     .catch(ui.onUpdateInventoryFailure)
 }
 

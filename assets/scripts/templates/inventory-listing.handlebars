@@ -8,15 +8,34 @@
       <th scope="col"></th>
     </tr>
   </thead>
+  {{#if inventories}}
   <tbody id="item">
     {{#each inventories as |inventory|}}
       <tr id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
-        <td scope="row">{{inventory.name}}</td>
-        <td>{{inventory.quantity}}</td>
-        <td>${{inventory.price}}</td>
-        <td>{{> update-inventory id=inventory._id}}</td>
-        <td>{{> delete-inventory id=inventory._id}}</td>
+        {{#if inventory.isEditing}}
+            <form id="update-inventory-form">
+              <td scope="row">
+                <input type="text" name="inventory[name]" value="{{inventory.name}}" />
+              </td>
+              <td><input type="number" name="inventory[quantity]" value="{{inventory.quantity}}" /></td>
+              <td><input name="inventory[price]" type="number" step="0.01" value="{{inventory.price}}" /></td>
+              {{> update-inventory id=inventory._id isEditing=inventory.isEditing}}
+            </form>
+            {{> delete-inventory id=inventory._id}}
+        {{else}}
+          <td scope="row">{{inventory.name}}</td>
+          <td>{{inventory.quantity}}</td>
+          <td>${{inventory.price}}</td>
+          {{> update-inventory id=inventory._id}}
+          {{> delete-inventory id=inventory._id}}
+        {{/if}}
       </tr>
-        {{/each}}
+    {{/each}}
   </tbody>
 </table>
+
+{{else}}
+  <div class="container text-center empty-table">
+    <p class="text-muted">No items in inventory. Create some!</p>
+  </div>
+{{/if}}

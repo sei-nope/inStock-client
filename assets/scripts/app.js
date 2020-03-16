@@ -24,7 +24,7 @@ $(() => {
   $('#sign-out').on('click', authEvents.onSignOut)
   $('.inventory-content').on('click', '.delete-inventory', authEvents.onDeleteInventory)
   $('.inventory-content').on('click', '.update-inventory', authEvents.onGetUpdateInventory)
-  $('#update-inventory-form').on('submit', authEvents.onUpdateInventory)
+  $('#update-inventory-form').on('submit', '.inventory-content', authEvents.onUpdateInventory)
   $('#create-inventory-form').on('submit', authEvents.onCreateInventory)
   $('#show-inventory').on('click', authEvents.onIndexInventory)
 })
