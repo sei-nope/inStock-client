@@ -19,7 +19,7 @@ const successMessage = function (msg, type) {
   }, 3000)
 }
 const failureMessage = function (msg, type) {
-  const alertHtml = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  const alertHtml = `<div class="alert alert-danger alert-dismissible fade show ${type}" role="alert">
     ${msg}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
