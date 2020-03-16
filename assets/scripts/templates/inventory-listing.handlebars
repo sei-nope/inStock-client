@@ -18,6 +18,8 @@
           {{> update-inventory id=inventory._id}}
           {{> delete-inventory id=inventory._id}}
           {{> qr-code id=inventory._id}}
+          {{> quick-change-add id=inventory._id quantity=inventory.quantity}}
+          {{> quick-change-minus id=inventory._id quantity=inventory.quantity}}
           <div class="modal" id="qr-code-modal-{{inventory._id}}">
             <div class="modal-dialog">
               <div class="modal-content">

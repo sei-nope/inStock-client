@@ -70,6 +70,32 @@ const onGetUpdateInventory = (event) => {
   console.log(updateId)
 }
 
+const onQuickAddInventory = (event) => {
+  event.preventDefault()
+  const id = $(event.target).data('id')
+  const data = {
+    inventory: {
+      quantity: $(event.target).data('quantity') + 1
+    }
+  }
+  api.updateInventory(id, data)
+    .then(ui.onUpdateInventorySuccess)
+    .catch(ui.onUpdateInventoryFailure)
+}
+
+const onQuickMinusInventory = (event) => {
+  event.preventDefault()
+  const id = $(event.target).data('id')
+  const data = {
+    inventory: {
+      quantity: $(event.target).data('quantity') - 1
+    }
+  }
+  api.updateInventory(id, data)
+    .then(ui.onUpdateInventorySuccess)
+    .catch(ui.onUpdateInventoryFailure)
+}
+
 const onUpdateInventory = (event) => {
   event.preventDefault()
   const form = event.target
@@ -109,5 +135,7 @@ module.exports = {
   onUpdateInventory,
   onGetUpdateInventory,
   onIndexInventory,
-  onCreateInventory
+  onCreateInventory,
+  onQuickAddInventory,
+  onQuickMinusInventory
 }
