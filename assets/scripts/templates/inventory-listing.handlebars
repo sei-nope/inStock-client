@@ -1,4 +1,4 @@
-<table class="table table-hover inventory-content">
+<table class="table table-hover table-sm inventory-content">
 
   <thead>
     <tr class="table-header">
@@ -20,14 +20,18 @@
             </td>
             <td><input type="number" name="inventory[quantity]" value="{{inventory.quantity}}" /></td>
             <td><input name="inventory[price]" type="number" step="0.01" value="{{inventory.price}}" /></td>
-            <td>{{> update-inventory id=inventory._id isEditing=inventory.isEditing}}</td>
-            <td>{{> delete-inventory id=inventory._id}}</td>
+            <td>
+              {{> update-inventory id=inventory._id isEditing=inventory.isEditing}}
+              {{> delete-inventory id=inventory._id}}
+            </td>
         {{else}}
           <td scope="row">{{inventory.name}}</td>
           <td>{{inventory.quantity}}</td>
           <td>${{inventory.price}}</td>
-          <td>{{> update-inventory id=inventory._id}}</td>
-          <td>{{> delete-inventory id=inventory._id}}</td>
+          <td>
+            {{> update-inventory id=inventory._id}}
+            {{> delete-inventory id=inventory._id}}
+          </td>
         {{/if}}
         </td>
           {{> qr-code id=inventory._id}}
