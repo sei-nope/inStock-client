@@ -1,7 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
 
-$trashcan: #c21807;
-$edit: #29ab87;
+$trashcan: #D4C5E2;
+$edit: #80CFA9;
 
 a {
   cursor: pointer;
@@ -26,6 +26,7 @@ body {
 .success-message {
   color: $edit;
 }
+
 path{
   pointer-events: none;
 }
@@ -112,7 +113,7 @@ button.home-element {
     top: 0;
     width: $contW;
     height: 100%;
-    background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80');
+    background-image: url('https://imgur.com/lrvvo49.jpg/');
     background-size: cover;
     transition: transform $switchAT ease-in-out;
   }
@@ -141,7 +142,7 @@ button.home-element {
     width: 100%;
     padding: 0 20px;
     text-align: center;
-    color: #fff;
+    color: #FFF;
     transition: transform $switchAT ease-in-out;
 
     h2 {
@@ -178,7 +179,7 @@ button.home-element {
     height: $btnH;
     margin: 0 auto;
     background: transparent;
-    color: #fff;
+    color: #a7e2e3;
     text-transform: uppercase;
     font-size: 15px;
     cursor: pointer;
@@ -191,7 +192,7 @@ button.home-element {
       top: 0;
       width: 100%;
       height: 100%;
-      border: 2px solid #fff;
+      border: 2px solid #a7e2e3;
       border-radius: 30px;
     }
 
@@ -237,7 +238,7 @@ label.home-element {
 
   span {
     font-size: 12px;
-    color: #cfcfcf;
+    color: #4c6663;
     text-transform: uppercase;
   }
 }
@@ -255,7 +256,7 @@ input.home-element {
 button.home-element {
   margin-top: 40px;
   margin-bottom: 20px;
-  background: #d4af7a;
+  background: #274f77;
   text-transform: uppercase;
 }
 
@@ -275,4 +276,34 @@ button.home-element {
   @include signUpActive {
     transform: translate3d(0,0,0);
   }
+}
+
+.table-header, .input-group-text {
+  background: #c9d7f8;
+}
+
+.table-hover tbody tr:hover td {
+    background: #c9d7f8;
+}
+
+.modal-title, .create-inventory {
+  color: #422ca3;
+}
+
+.modal-submit-button {
+  background: #c9d7f8;
+  color: #422ca3;
+  border: 1px solid black;
+}
+
+button.modal-submit-button:hover {
+   background: #422ca3;
+   color: #FFF;
+   border: 1px solid white;
+}
+
+.navbar {
+  background-color: #c9d7f8;
+  border: 1px solid black;
+  margin: 20px 20px;
 }
