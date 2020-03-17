@@ -9,8 +9,8 @@
       <th scope="col"></th>
     </tr>
   </thead>
-{{#if inventories}}
   <tbody id="item">
+  {{#if inventories}}
     {{#if inventories}}
       {{#each inventories as |inventory|}}
         <tr id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">

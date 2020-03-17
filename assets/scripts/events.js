@@ -102,7 +102,7 @@ const onUpdateInventory = (event) => {
   const data = {
     inventory: {
       quantity: $row.find('[name="inventory[quantity]"]').val(),
-      name: $row.find('[name="inventory[name]"]').val(),
+      name: $row.find('[name="inventory[name]"]').val().toLowerCase(),
       price: $row.find('[name="inventory[price]"]').val()
     }
   }

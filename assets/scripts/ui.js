@@ -176,9 +176,9 @@ const onQuickChangeInventoryFailure = function (response) {
 }
 
 const onUpdateInventoryFailure = function (response) {
-  failureMessage()
-  $('#modal-message-update-inventory').text('Item was not successfully updated')
-  $('#message').text('Update Attempt Failed')
+  const err = JSON.parse(response.responseText)
+  const msg = err.message
+  failureMessage(msg, 'update-change-fail')
 }
 
 let inventories
