@@ -61,21 +61,51 @@ const onCreateInventory = (event) => {
 }
 
 let updateId
-
 const onGetUpdateInventory = (event) => {
   event.preventDefault()
   updateId = undefined
   const id = $(event.target).data('id')
   updateId = id
-  console.log(updateId)
+  ui.editInventories(updateId)
+}
+
+const onQuickAddInventory = (event) => {
+  event.preventDefault()
+  const id = $(event.target).data('id')
+  const data = {
+    inventory: {
+      quantity: $(event.target).data('quantity') + 1
+    }
+  }
+  api.updateInventory(id, data)
+    .then(ui.onQuickChangeInventorySuccess)
+    .catch(ui.onQuickChangeInventoryFailure)
+}
+
+const onQuickMinusInventory = (event) => {
+  event.preventDefault()
+  const id = $(event.target).data('id')
+  const data = {
+    inventory: {
+      quantity: $(event.target).data('quantity') - 1
+    }
+  }
+  api.updateInventory(id, data)
+    .then(ui.onQuickChangeInventorySuccess)
+    .catch(ui.onQuickChangeInventoryFailure)
 }
 
 const onUpdateInventory = (event) => {
   event.preventDefault()
-  const form = event.target
-  const data = getFormFields(form)
-  console.log(data, updateId)
-  data.inventory.name = data.inventory.name.toLowerCase()
+  const updateId = $(event.target).data('id')
+  const $row = $(`[data-id=${updateId}]`)
+  const data = {
+    inventory: {
+      quantity: $row.find('[name="inventory[quantity]"]').val(),
+      name: $row.find('[name="inventory[name]"]').val().toLowerCase(),
+      price: $row.find('[name="inventory[price]"]').val()
+    }
+  }
   api.updateInventory(updateId, data)
     .then(ui.onUpdateInventorySuccess)
     .catch(ui.onUpdateInventoryFailure)
@@ -109,5 +139,7 @@ module.exports = {
   onUpdateInventory,
   onGetUpdateInventory,
   onIndexInventory,
-  onCreateInventory
+  onCreateInventory,
+  onQuickAddInventory,
+  onQuickMinusInventory
 }

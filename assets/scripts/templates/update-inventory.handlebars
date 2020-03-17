@@ -1,3 +1,5 @@
-<td class="update-inventory" data-toggle="modal" data-target="#update-inventory-modal">
-  <i class="fas fa-edit" data-id="{{id}}"></i>
-</td>
+{{#if isEditing}}
+<button class="fas fa-check" id="submit-edit" data-id="{{id}}"></button>
+{{else}}
+<i class="fas fa-edit update-inventory" data-id="{{id}}"></i>
+{{/if}}

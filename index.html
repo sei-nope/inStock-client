@@ -14,7 +14,7 @@
     </head>
 
     <body>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand">inStock</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -163,11 +163,11 @@
                           <input name="passwords[old]" type="password" id="old-password" placeholder="Old Password"  class="form-control" required>
                           <input name="passwords[new]" type="password"   id="new-password" placeholder="New Password"  class="form-control " required>
 
-                        <button id="change-password" type="submit" class="btn btn-info mt-2">Change Password</button>
+                        <button id="change-password" type="submit" class="btn btn-info mt-2 modal-submit-button">Change Password</button>
                       </form>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-sm btn-info close-pw-btn" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-sm btn-info close-pw-btn modal-submit-button" data-dismiss="modal">Close</button>
                     </div>
                   </div>
                 </div>
@@ -194,18 +194,18 @@
                       <input type='number' name='inventory[quantity]' placeholder='quantity' class="form-control mb-2 mr-sm-2">
                       <label for="inventory[price]">Price</label>
                       <input type='number' step='0.01' name='inventory[price]' placeholder='price' class="form-control mb-2 mr-sm-2">
-                      <button id="update-inventory" type="submit" class="btn btn-info mb-2">Update</button>
+                      <button id="update-inventory" type="submit" class="btn btn-info mb-2 modal-submit-button">Update</button>
                     </form>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-info close-update-btn" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-sm btn-info close-update-btn modal-submit-button" data-dismiss="modal">Close</button>
                   </div>
                 </div>
               </div>
             </div>
 
       <div class='container create-inventory'>
-        <h5>Create inventory</h5>
+        <h5>New inventory</h5>
         <form class="form-inline" id="create-inventory-form">
           <label for="inventory[name]" class="sr-only">Name</label>
           <input class="form-control mb-2 mr-sm-2" id="inventory[name]" placeholder="name" type='text' name='inventory[name]' required>
@@ -218,7 +218,7 @@
             </div>
             <input type="number" step='0.01' class="form-control" id="inventory[price]" placeholder="price" name='inventory[price]' required>
           </div>
-          <button id="create-inventory" type="submit" class="btn btn-info mb-2">Submit</button>
+          <button id="create-inventory" type="submit" class="btn btn-info mb-2 modal-submit-button">Submit</button>
         </form>
       </div>
 
