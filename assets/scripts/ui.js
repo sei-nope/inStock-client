@@ -32,8 +32,8 @@ const failureMessage = function (msg, type) {
   }, 3000)
 }
 const resetForms = function () {
-  $('#sign-up-form').trigger('reset')
-  $('#sign-in-form').trigger('reset')
+  $('.sign-up-form').trigger('reset')
+  $('.sign-in-form').trigger('reset')
   $('#change-password-form').trigger('reset')
   $('#create-inventory-form').trigger('reset')
   $('#update-inventory-form').trigger('reset')
@@ -41,10 +41,10 @@ const resetForms = function () {
 
 // Sign Up Success
 const onSignUpSuccess = function (response) {
-  $('.sign-up-msg').empty()
-  $('.sign-in-msg').empty()
+  $('.sign-up-msg').text('')
+  $('.sign-in-msg').text('')
   $('.sign-up-msg')
-    .removeClass()
+    .removeClass('failure-message')
     .addClass('success-message')
     .text(response.user.email + ' successfully signed up!')
   // Clear Form Fields
@@ -53,15 +53,15 @@ const onSignUpSuccess = function (response) {
 // Sign Up Fail
 const onSignUpFailure = function (response) {
   console.log(response.responseText)
-  $('#sign-up-msg')
-    .removeClass()
+  $('.sign-up-msg')
+    .removeClass('success-message')
     .addClass('failure-message')
     .text('Failed to sign up')
 }
 // Sign In Success
 const onSignInSuccess = function (response) {
-  $('.sign-in-msg').empty()
-  $('.sign-up-msg').empty()
+  $('.sign-in-msg').text('')
+  $('.sign-up-msg').text('')
   const msg = `${response.user.email} successfully signed in`
   successMessage(msg, 'sign-in-success')
   // Clear Form Fields
@@ -76,7 +76,6 @@ const onSignInSuccess = function (response) {
 // Sign In Fail
 const onSignInFailure = function (response) {
   $('.sign-in-msg')
-    .removeClass()
     // Add class to make message red
     .addClass('failure-message')
     .text('Sign in failed')
