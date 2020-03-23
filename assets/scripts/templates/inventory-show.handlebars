@@ -1,14 +1,16 @@
 <tr id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
-  <td scope="row">{{inventory.name}}</td>
+  <td>{{inventory.name}}</td>
   <td>
     {{inventory.quantity}}
     {{> quick-change-add id=inventory._id quantity=inventory.quantity}}
     {{> quick-change-minus id=inventory._id quantity=inventory.quantity}}
-</td>
+  </td>
   <td>${{inventory.price}}</td>
   <td>
-  {{> update-inventory id=inventory._id}}
-  {{> delete-inventory id=inventory._id}}
-</td>
-  {{> qr-code id=inventory._id}}
+    {{> update-inventory id=inventory._id}}
+    {{> delete-inventory id=inventory._id}}
+  </td>
+  <td>
+    {{> qr-code id=inventory._id qr=inventory.qr}}
+  </td>
 </tr>

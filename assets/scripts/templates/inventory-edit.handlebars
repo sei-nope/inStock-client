@@ -1,0 +1,16 @@
+    <form class="edit-form">
+      <td>
+        <input type="text" name="inventory[name]" value="{{inventory.name}}" />
+      </td>
+      <td>
+        <input type="number" name="inventory[quantity]" value="{{inventory.quantity}}" />
+      </td>
+      <td>
+        <input size="5" name="inventory[price]" type="number" step="0.01" value="{{inventory.price}}" />
+      </td>
+      <td>
+        <button class='submit-edit fas fa-check' type="submit" data-id="{{inventory._id}}"></button>
+        {{> delete-inventory id=inventory._id}}
+      </td>
+      <td></td>
+    </form>

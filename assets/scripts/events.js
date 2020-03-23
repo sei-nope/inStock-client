@@ -18,7 +18,7 @@ const onSignUp = function (event) {
 // Sign In function
 const onSignIn = function (event) {
   event.preventDefault()
-
+  console.log(event.target)
   const form = event.target
   const data = getFormFields(form)
 
@@ -50,23 +50,35 @@ const onSignOut = function (event) {
     .catch(ui.onSignOutFailure)
 }
 
+// Index inventory
+const onIndexInventory = (event) => {
+  event.preventDefault()
+
+  api.indexInventories()
+    .then(ui.onIndexInventoriesSuccess)
+    .catch(ui.onIndexInventoriesFailure)
+}
+
+// Create new inventory function
 const onCreateInventory = (event) => {
   event.preventDefault()
   const form = event.target
   const data = getFormFields(form)
   data.inventory.name = data.inventory.name.toLowerCase()
   api.createInventory(data)
-    .then(ui.onCreateInventorySuccess)
+    .then((response) => {
+      ui.onCreateInventorySuccess(response)
+      onIndexInventory(event)
+    })
     .catch(ui.onCreateInventoryFailure)
 }
 
-let updateId
 const onGetUpdateInventory = (event) => {
   event.preventDefault()
-  updateId = undefined
   const id = $(event.target).data('id')
-  updateId = id
-  ui.editInventories(updateId)
+  api.showInventory(id)
+    .then(ui.onGetUpdateInventorySuccess)
+    .catch(ui.onGetUpdateInventoryFailure)
 }
 
 const onQuickAddInventory = (event) => {
@@ -98,7 +110,7 @@ const onQuickMinusInventory = (event) => {
 const onUpdateInventory = (event) => {
   event.preventDefault()
   const updateId = $(event.target).data('id')
-  const $row = $(`[data-id=${updateId}]`)
+  const $row = $(`tr[data-id=${updateId}]`)
   const data = {
     inventory: {
       quantity: $row.find('[name="inventory[quantity]"]').val(),
@@ -109,14 +121,6 @@ const onUpdateInventory = (event) => {
   api.updateInventory(updateId, data)
     .then(ui.onUpdateInventorySuccess)
     .catch(ui.onUpdateInventoryFailure)
-}
-
-const onIndexInventory = (event) => {
-  event.preventDefault()
-
-  api.indexInventories()
-    .then(ui.onIndexInventoriesSuccess)
-    .catch(ui.onIndexInventoriesFailure)
 }
 
 const onDeleteInventory = (event) => {

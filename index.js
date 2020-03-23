@@ -4,6 +4,8 @@
 // var example = require('./example');
 
 import 'bootstrap'
+import 'bootstrap-table/dist/bootstrap-table.js'
+import 'bootstrap-table/dist/bootstrap-table.min.css'
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
 import '@fortawesome/fontawesome-free/js/regular'
