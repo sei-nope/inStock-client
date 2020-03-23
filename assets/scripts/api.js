@@ -82,6 +82,13 @@ const deleteInventory = function (id) {
   })
 }
 
+const showInventory = function (id) {
+  return $.ajax({
+    url: config.apiUrl + '/inventories/' + id,
+    method: 'GET'
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
@@ -90,5 +97,6 @@ module.exports = {
   createInventory,
   updateInventory,
   indexInventories,
+  showInventory,
   deleteInventory
 }
