@@ -30,7 +30,7 @@ $(() => {
 
   // Development code
   // Set sign in email and password on page load and sign in so that changes to the table can be seen
-  $('#sign-in-email').val('j@j')
-  $('#sign-in-password').val('1')
-  $('#sign-in').trigger('click')
+  // $('#sign-in-email').val('j@j')
+  // $('#sign-in-password').val('1')
+  // $('#sign-in').trigger('click')
 })
