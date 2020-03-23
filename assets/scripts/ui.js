@@ -52,7 +52,6 @@ const onSignUpSuccess = function (response) {
 }
 // Sign Up Fail
 const onSignUpFailure = function (response) {
-  console.log(response.responseText)
   $('.sign-up-msg')
     .removeClass('success-message')
     .addClass('failure-message')
@@ -142,7 +141,6 @@ const onIndexInventoriesFailure = function (response) {
 
 const onGetUpdateInventorySuccess = function (response) {
   const inventory = response.inventory
-  console.log(inventory)
   const editInventoryHTML = editInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).html(editInventoryHTML)
 }
