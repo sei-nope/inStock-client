@@ -1,5 +1,7 @@
 <tr id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
+  <td>{{inventory._id}}</td>
   <td>{{inventory.name}}</td>
+  <td></td>
   <td>
     {{inventory.quantity}}
     {{> quick-change-add id=inventory._id quantity=inventory.quantity}}

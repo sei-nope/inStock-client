@@ -32,9 +32,11 @@
         </ul>
       </div>
     </nav>
+
     <div class="container" id="wrapper">
       <div id="sys-message" class="container alert-fixed"></div>
     </div>
+
     <div class="homepage">
       <div class="large-homepage container cont my-3">
         <form class="form sign-in sign-in-form">
@@ -240,4 +242,11 @@
       </div>
     <footer class="footer text-center text-muted small"> © Team Nope™ <span class="year"></span> </footer>
   </body>
+  <script>
+    function priceSorter(a, b) {
+      var aa = a.replace('$', '')
+      var bb = b.replace('$', '')
+      return aa - bb
+    }
+  </script>
 </html>

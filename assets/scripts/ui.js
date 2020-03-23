@@ -2,7 +2,6 @@
 
 const store = require('./store')
 const indexInventoriesTemplate = require('./templates/inventory-listing.handlebars')
-const showInventoryTemplate = require('./templates/inventory-show.handlebars')
 const editInventoryTemplate = require('./templates/inventory-edit.handlebars')
 const QRCode = require('qrcode')
 const config = require('./config.js')
@@ -132,6 +131,9 @@ const onIndexInventoriesSuccess = function (response) {
   })
   const indexInventoriesHTML = indexInventoriesTemplate({inventories: inventories})
   $('.inventory-content').html(indexInventoriesHTML)
+  const $table = $('#table')
+  $table.bootstrapTable()
+  $table.bootstrapTable('hideColumn', 'id')
 }
 
 const onIndexInventoriesFailure = function (response) {
@@ -143,6 +145,7 @@ const onGetUpdateInventorySuccess = function (response) {
   const inventory = response.inventory
   const editInventoryHTML = editInventoryTemplate({inventory: inventory})
   $(`#${inventory._id}`).html(editInventoryHTML)
+  $('.update-inventory').hide()
 }
 
 const onGetUpdateInventoryFailure = function (response) {
@@ -173,13 +176,21 @@ const onUpdateInventorySuccess = function (response) {
     inventory.qr = url
   })
 
-  const showInventoryHTML = showInventoryTemplate({inventory: inventory})
-  $(`#${inventory._id}`).remove()
-  $('#item').prepend(showInventoryHTML)
+  // const showInventoryHTML = showInventoryTemplate({inventory: inventory})
+  // $(`#${inventory._id}`).remove()
+  // $('#item').prepend(showInventoryHTML)
   window.scrollTo(0, 0)
   resetForms()
   const msg = 'Update successful'
   successMessage(msg, 'update-success')
+  $('#table').bootstrapTable('updateByUniqueId', {
+    id: inventory._id,
+    row: {
+      item: inventory.name,
+      qty: inventory.quantity,
+      price: `$${inventory.price}`
+    }
+  })
 }
 
 const onQuickChangeInventorySuccess = function (response) {
@@ -188,10 +199,12 @@ const onQuickChangeInventorySuccess = function (response) {
     if (error) console.error(error)
     inventory.qr = url
   })
-  const showInventoryHTML = showInventoryTemplate({inventory: inventory})
-  $(`#${inventory._id}`).remove()
-  $('#item').prepend(showInventoryHTML)
-  resetForms()
+  $('#table').bootstrapTable('updateByUniqueId', {
+    id: inventory._id,
+    row: {
+      qty: inventory.quantity
+    }
+  })
 }
 
 const onQuickChangeInventoryFailure = function (response) {
@@ -207,7 +220,7 @@ const onUpdateInventoryFailure = function (response) {
 }
 
 const onDeleteInventorySuccess = function (response, id) {
-  $(`#${id}`).remove()
+  $('#table').bootstrapTable('removeByUniqueId', id)
   const msg = 'Item deleted!'
   successMessage(msg, 'delete-success')
 }

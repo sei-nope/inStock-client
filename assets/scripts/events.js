@@ -83,12 +83,16 @@ const onGetUpdateInventory = (event) => {
 const onQuickAddInventory = (event) => {
   event.preventDefault()
   const id = $(event.target).data('id')
-  const data = {
-    inventory: {
-      quantity: $(event.target).data('quantity') + 1
-    }
-  }
-  api.updateInventory(id, data)
+  api.showInventory(id)
+    .then((response) => {
+      const quantity = parseInt(response.inventory.quantity) + 1
+      const data = {
+        inventory: {
+          quantity: quantity
+        }
+      }
+      return api.updateInventory(id, data)
+    })
     .then(ui.onQuickChangeInventorySuccess)
     .catch(ui.onQuickChangeInventoryFailure)
 }
@@ -96,12 +100,16 @@ const onQuickAddInventory = (event) => {
 const onQuickMinusInventory = (event) => {
   event.preventDefault()
   const id = $(event.target).data('id')
-  const data = {
-    inventory: {
-      quantity: $(event.target).data('quantity') - 1
-    }
-  }
-  api.updateInventory(id, data)
+  api.showInventory(id)
+    .then((response) => {
+      const quantity = parseInt(response.inventory.quantity) - 1
+      const data = {
+        inventory: {
+          quantity: quantity
+        }
+      }
+      return api.updateInventory(id, data)
+    })
     .then(ui.onQuickChangeInventorySuccess)
     .catch(ui.onQuickChangeInventoryFailure)
 }

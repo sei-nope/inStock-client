@@ -1,9 +1,11 @@
-<table class="table table-hover table-sm inventory-content">
+<table id='table' class="table table-hover table-sm inventory-content" data-unique-id="id">
   <thead>
     <tr>
-      <th scope="col">Item</th>
-      <th scope="col">Quantity</th>
-      <th scope="col">Price</th>
+      <th data-field="id" scope="col"></th>
+      <th data-sortable="true" data-field="item" scope="col">Item</th>
+      <th scope="col">+/-</th>
+      <th data-sortable="true" data-field="qty" scope="col">Quantity</th>
+      <th data-sortable="true" data-field="price" scope="col" data-sorter="priceSorter">Price</th>
       <th scope="col">Edit/Del</th>
       <th scope="col">QR code</th>
     </tr>
@@ -12,11 +14,14 @@
     {{#if inventories}}
       {{#each inventories as |inventory|}}
         <tr id="{{inventory._id}}" data-id="{{inventory._id}}" class="inventory-listing">
+          <td>{{inventory._id}}</td>
           <td>{{inventory.name}}</td>
           <td>
-            {{inventory.quantity}}
             {{> quick-change-add id=inventory._id quantity=inventory.quantity}}
             {{> quick-change-minus id=inventory._id quantity=inventory.quantity}}
+          </td>
+          <td>
+            {{inventory.quantity}}
           </td>
           <td>${{inventory.price}}</td>
           <td>
